@@ -1,9 +1,9 @@
-﻿using BS.BusinessLogic.Services;
-using BS.EntityData.Context;
+﻿using BS.EntityData.Context;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace EP.BusinessLogic.Services
+namespace BS.BusinessLogic.Services
 {
     public class TeamService : BaseService<Team>, ITeamService
     {
@@ -11,11 +11,16 @@ namespace EP.BusinessLogic.Services
         {
         }
 
+        public List<Team> GetTeams()
+        {
+            return Dbset.ToList();
+        }
+
         public bool CreateTeam(string teamName)
         {
             if (!Dbset.Any(a => a.Name.ToLower() == teamName.ToLower()))
             {
-                Dbset.Add(new Team
+                Add(new Team
                 {
                     CreateDate = DateTime.Now,
                     Name = teamName
@@ -30,6 +35,7 @@ namespace EP.BusinessLogic.Services
 
     public interface ITeamService : IService<Team>
     {
-        bool CreateTeam(string teamName);
+       List<Team> GetTeams();
+       bool CreateTeam(string teamName);        
     }
 }

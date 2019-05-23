@@ -1,5 +1,5 @@
 ﻿using BS.EntityData.Context;
-using EP.BusinessLogic.Services;
+using BS.BusinessLogic.Services;
 using Ninject.Modules;
 
 namespace BS.BusinessLogic

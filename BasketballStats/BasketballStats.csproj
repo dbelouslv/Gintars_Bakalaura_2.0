@@ -110,6 +110,10 @@
     <Content Include="Content\home.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EntityData\BS.EntityData.csproj">
+      <Project>{40415593-9951-4C3C-B4D2-E8BF81400576}</Project>
+      <Name>BS.EntityData</Name>
+    </ProjectReference>
     <ProjectReference Include="BusinessLogic\BS.BusinessLogic.csproj">
       <Project>{0CC3CE54-CE4A-4A9E-ADBC-1E83ACCB2002}</Project>
       <Name>BS.BusinessLogic</Name>
