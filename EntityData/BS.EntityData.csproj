@@ -51,11 +51,21 @@
     <Compile Include="Context\DataContext.cs" />
     <Compile Include="Context\Team.cs" />
     <Compile Include="Context\Match.cs" />
+    <Compile Include="Migrations\201905231851048_TeamAndMatches.cs" />
+    <Compile Include="Migrations\201905231851048_TeamAndMatches.Designer.cs">
+      <DependentUpon>201905231851048_TeamAndMatches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201905231851048_TeamAndMatches.resx">
+      <DependentUpon>201905231851048_TeamAndMatches.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

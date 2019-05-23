@@ -29,12 +29,14 @@ namespace BS.EntityData.Context
             modelBuilder.Entity<Match>()
                .HasRequired(m => m.TeamOne)
                .WithMany()
-               .HasForeignKey(m => m.TeamOneId);
+               .HasForeignKey(m => m.TeamOneId)
+               .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Match>()
               .HasRequired(m => m.TeamTwo)
               .WithMany()
-              .HasForeignKey(m => m.TeamTwoId);
+              .HasForeignKey(m => m.TeamTwoId)
+              .WillCascadeOnDelete(false);
         }
     }
 }

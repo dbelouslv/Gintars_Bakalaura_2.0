@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BS.BusinessLogic;
+using EP.BusinessLogic.Services;
+using Ninject;
+using System;
 using System.Windows.Forms;
 
 namespace BasketballStats
 {
     static class Program
     {
-        /// <summary>
-        /// Главная точка входа для приложения.
-        /// </summary>
         [STAThread]
         static void Main()
         {
+            var kernel = new StandardKernel(new Bindings());
+            var teamService = kernel.Get<ITeamService>();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BasketballStats());
+            Application.Run(new BasketballStats(teamService));
         }
     }
 }

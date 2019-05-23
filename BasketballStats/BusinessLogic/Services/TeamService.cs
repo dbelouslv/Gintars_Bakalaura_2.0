@@ -13,7 +13,7 @@ namespace EP.BusinessLogic.Services
 
         public bool CreateTeam(string teamName)
         {
-            if (!Dbset.Any(a => a.Name == teamName))
+            if (!Dbset.Any(a => a.Name.ToLower() == teamName.ToLower()))
             {
                 Dbset.Add(new Team
                 {
