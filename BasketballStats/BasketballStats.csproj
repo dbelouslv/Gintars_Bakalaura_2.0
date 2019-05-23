@@ -70,14 +70,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Ninject.Web.Common.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="BasketballStats.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="BasketballStats.Designer.cs">
+      <DependentUpon>BasketballStats.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BasketballStats.resx">
+      <DependentUpon>BasketballStats.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -100,6 +103,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\ballz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="BusinessLogic\BS.BusinessLogic.csproj">
+      <Project>{0CC3CE54-CE4A-4A9E-ADBC-1E83ACCB2002}</Project>
+      <Name>BS.BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

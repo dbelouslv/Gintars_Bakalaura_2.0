@@ -11,7 +11,6 @@ namespace BS.BusinessLogic.Services
         void Update(T entity);
         void Update(IEnumerable<T> entities);
         void Delete(T entity);
-        void Delete(Expression<Func<T, bool>> where);
         void Delete(IEnumerable<T> entities);
         T Get(Expression<Func<T, bool>> where);
     }

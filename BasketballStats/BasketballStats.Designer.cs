@@ -38,9 +38,11 @@
             this.newTeamInput = new System.Windows.Forms.TextBox();
             this.createTeamBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.MessageLabel = new System.Windows.Forms.Label();
             this.leftMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ball)).BeginInit();
+            this.topMenu.SuspendLayout();
             this.CreateGamePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +89,7 @@
             // topMenu
             // 
             this.topMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.topMenu.Controls.Add(this.MessageLabel);
             this.topMenu.Location = new System.Drawing.Point(230, 0);
             this.topMenu.Name = "topMenu";
             this.topMenu.Size = new System.Drawing.Size(790, 70);
@@ -135,6 +138,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Izveidot Komandu:";
             // 
+            // MessageLabel
+            // 
+            this.MessageLabel.AutoSize = true;
+            this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MessageLabel.Location = new System.Drawing.Point(9, 10);
+            this.MessageLabel.Name = "MessageLabel";
+            this.MessageLabel.Size = new System.Drawing.Size(0, 20);
+            this.MessageLabel.TabIndex = 0;
+            // 
             // BasketballStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,6 +164,8 @@
             this.leftMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ball)).EndInit();
+            this.topMenu.ResumeLayout(false);
+            this.topMenu.PerformLayout();
             this.CreateGamePanel.ResumeLayout(false);
             this.CreateGamePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -169,6 +183,7 @@
         private System.Windows.Forms.TextBox newTeamInput;
         private System.Windows.Forms.Button createTeamBtn;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label MessageLabel;
     }
 }
 
