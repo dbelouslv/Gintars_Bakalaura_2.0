@@ -37,9 +37,17 @@
             this.appName = new System.Windows.Forms.Label();
             this.ball = new System.Windows.Forms.PictureBox();
             this.topMenu = new System.Windows.Forms.Panel();
+            this.headerName = new System.Windows.Forms.Label();
             this.exitLabel = new System.Windows.Forms.Label();
             this.messageLabel = new System.Windows.Forms.Label();
             this.CreateGamePanel = new System.Windows.Forms.Panel();
+            this.removeParticipantBtn = new System.Windows.Forms.Button();
+            this.removeParticipant = new System.Windows.Forms.ComboBox();
+            this.dzestSpeletaju = new System.Windows.Forms.Label();
+            this.teamTwoRoster = new System.Windows.Forms.Label();
+            this.teamOneRoster = new System.Windows.Forms.Label();
+            this.teamTwoName = new System.Windows.Forms.Label();
+            this.teamOneName = new System.Windows.Forms.Label();
             this.izveidotSpeletaju = new System.Windows.Forms.Label();
             this.savePlayerBtn = new System.Windows.Forms.Button();
             this.selectedTeams = new System.Windows.Forms.ComboBox();
@@ -71,10 +79,7 @@
             this.createTeamBtn = new System.Windows.Forms.Button();
             this.izveidotKomanduLabel = new System.Windows.Forms.Label();
             this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.teamOneName = new System.Windows.Forms.Label();
-            this.teamTwoName = new System.Windows.Forms.Label();
-            this.teamOneRoster = new System.Windows.Forms.Label();
-            this.teamTwoRoster = new System.Windows.Forms.Label();
+            this.toManageGameBtn = new System.Windows.Forms.Button();
             this.leftMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeBtn)).BeginInit();
@@ -153,12 +158,25 @@
             // topMenu
             // 
             this.topMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.topMenu.Controls.Add(this.headerName);
             this.topMenu.Controls.Add(this.exitLabel);
             this.topMenu.Controls.Add(this.messageLabel);
             this.topMenu.Location = new System.Drawing.Point(230, 0);
             this.topMenu.Name = "topMenu";
             this.topMenu.Size = new System.Drawing.Size(790, 70);
             this.topMenu.TabIndex = 1;
+            // 
+            // headerName
+            // 
+            this.headerName.AutoSize = true;
+            this.headerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.headerName.Location = new System.Drawing.Point(139, 42);
+            this.headerName.MinimumSize = new System.Drawing.Size(500, 0);
+            this.headerName.Name = "headerName";
+            this.headerName.Size = new System.Drawing.Size(500, 25);
+            this.headerName.TabIndex = 2;
+            this.headerName.Text = "Galvenā";
+            this.headerName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // exitLabel
             // 
@@ -183,6 +201,10 @@
             // 
             // CreateGamePanel
             // 
+            this.CreateGamePanel.Controls.Add(this.toManageGameBtn);
+            this.CreateGamePanel.Controls.Add(this.removeParticipantBtn);
+            this.CreateGamePanel.Controls.Add(this.removeParticipant);
+            this.CreateGamePanel.Controls.Add(this.dzestSpeletaju);
             this.CreateGamePanel.Controls.Add(this.teamTwoRoster);
             this.CreateGamePanel.Controls.Add(this.teamOneRoster);
             this.CreateGamePanel.Controls.Add(this.teamTwoName);
@@ -221,6 +243,85 @@
             this.CreateGamePanel.Name = "CreateGamePanel";
             this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
             this.CreateGamePanel.TabIndex = 2;
+            // 
+            // removeParticipantBtn
+            // 
+            this.removeParticipantBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.removeParticipantBtn.FlatAppearance.BorderSize = 2;
+            this.removeParticipantBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeParticipantBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeParticipantBtn.ForeColor = System.Drawing.Color.Black;
+            this.removeParticipantBtn.Location = new System.Drawing.Point(419, 558);
+            this.removeParticipantBtn.Name = "removeParticipantBtn";
+            this.removeParticipantBtn.Size = new System.Drawing.Size(47, 26);
+            this.removeParticipantBtn.TabIndex = 16;
+            this.removeParticipantBtn.Text = "OK";
+            this.removeParticipantBtn.UseVisualStyleBackColor = true;
+            this.removeParticipantBtn.Visible = false;
+            this.removeParticipantBtn.Click += new System.EventHandler(this.RemoveParticipant);
+            // 
+            // removeParticipant
+            // 
+            this.removeParticipant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.removeParticipant.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeParticipant.FormattingEnabled = true;
+            this.removeParticipant.Location = new System.Drawing.Point(158, 558);
+            this.removeParticipant.MaxDropDownItems = 24;
+            this.removeParticipant.Name = "removeParticipant";
+            this.removeParticipant.Size = new System.Drawing.Size(255, 26);
+            this.removeParticipant.TabIndex = 15;
+            this.removeParticipant.Visible = false;
+            // 
+            // dzestSpeletaju
+            // 
+            this.dzestSpeletaju.AutoSize = true;
+            this.dzestSpeletaju.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dzestSpeletaju.Location = new System.Drawing.Point(18, 561);
+            this.dzestSpeletaju.Name = "dzestSpeletaju";
+            this.dzestSpeletaju.Size = new System.Drawing.Size(134, 20);
+            this.dzestSpeletaju.TabIndex = 31;
+            this.dzestSpeletaju.Text = "Dzēst spēlētāju";
+            this.dzestSpeletaju.Visible = false;
+            // 
+            // teamTwoRoster
+            // 
+            this.teamTwoRoster.AutoSize = true;
+            this.teamTwoRoster.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamTwoRoster.Location = new System.Drawing.Point(440, 260);
+            this.teamTwoRoster.Name = "teamTwoRoster";
+            this.teamTwoRoster.Size = new System.Drawing.Size(0, 20);
+            this.teamTwoRoster.TabIndex = 30;
+            this.teamTwoRoster.Visible = false;
+            // 
+            // teamOneRoster
+            // 
+            this.teamOneRoster.AutoSize = true;
+            this.teamOneRoster.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamOneRoster.Location = new System.Drawing.Point(18, 260);
+            this.teamOneRoster.Name = "teamOneRoster";
+            this.teamOneRoster.Size = new System.Drawing.Size(0, 20);
+            this.teamOneRoster.TabIndex = 29;
+            this.teamOneRoster.Visible = false;
+            // 
+            // teamTwoName
+            // 
+            this.teamTwoName.AutoSize = true;
+            this.teamTwoName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamTwoName.Location = new System.Drawing.Point(488, 218);
+            this.teamTwoName.Name = "teamTwoName";
+            this.teamTwoName.Size = new System.Drawing.Size(0, 20);
+            this.teamTwoName.TabIndex = 28;
+            this.teamTwoName.Visible = false;
+            // 
+            // teamOneName
+            // 
+            this.teamOneName.AutoSize = true;
+            this.teamOneName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamOneName.Location = new System.Drawing.Point(96, 218);
+            this.teamOneName.Name = "teamOneName";
+            this.teamOneName.Size = new System.Drawing.Size(0, 20);
+            this.teamOneName.TabIndex = 27;
+            this.teamOneName.Visible = false;
             // 
             // izveidotSpeletaju
             // 
@@ -526,45 +627,21 @@
             // 
             this.teamBindingSource.DataSource = typeof(BS.EntityData.Context.Team);
             // 
-            // teamOneName
+            // toManageGameBtn
             // 
-            this.teamOneName.AutoSize = true;
-            this.teamOneName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.teamOneName.Location = new System.Drawing.Point(96, 218);
-            this.teamOneName.Name = "teamOneName";
-            this.teamOneName.Size = new System.Drawing.Size(0, 20);
-            this.teamOneName.TabIndex = 27;
-            this.teamOneName.Visible = false;
-            // 
-            // teamTwoName
-            // 
-            this.teamTwoName.AutoSize = true;
-            this.teamTwoName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.teamTwoName.Location = new System.Drawing.Point(488, 218);
-            this.teamTwoName.Name = "teamTwoName";
-            this.teamTwoName.Size = new System.Drawing.Size(0, 20);
-            this.teamTwoName.TabIndex = 28;
-            this.teamTwoName.Visible = false;
-            // 
-            // teamOneRoster
-            // 
-            this.teamOneRoster.AutoSize = true;
-            this.teamOneRoster.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.teamOneRoster.Location = new System.Drawing.Point(18, 260);
-            this.teamOneRoster.Name = "teamOneRoster";
-            this.teamOneRoster.Size = new System.Drawing.Size(0, 20);
-            this.teamOneRoster.TabIndex = 29;
-            this.teamOneRoster.Visible = false;
-            // 
-            // teamTwoRoster
-            // 
-            this.teamTwoRoster.AutoSize = true;
-            this.teamTwoRoster.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.teamTwoRoster.Location = new System.Drawing.Point(440, 260);
-            this.teamTwoRoster.Name = "teamTwoRoster";
-            this.teamTwoRoster.Size = new System.Drawing.Size(0, 20);
-            this.teamTwoRoster.TabIndex = 30;
-            this.teamTwoRoster.Visible = false;
+            this.toManageGameBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.toManageGameBtn.FlatAppearance.BorderSize = 2;
+            this.toManageGameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.toManageGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toManageGameBtn.ForeColor = System.Drawing.Color.Black;
+            this.toManageGameBtn.Location = new System.Drawing.Point(680, 561);
+            this.toManageGameBtn.Name = "toManageGameBtn";
+            this.toManageGameBtn.Size = new System.Drawing.Size(91, 26);
+            this.toManageGameBtn.TabIndex = 32;
+            this.toManageGameBtn.Text = "TĀLĀK";
+            this.toManageGameBtn.UseVisualStyleBackColor = true;
+            this.toManageGameBtn.Visible = false;
+            this.toManageGameBtn.Click += new System.EventHandler(this.ToManageGame);
             // 
             // BasketballStats
             // 
@@ -641,6 +718,11 @@
         private System.Windows.Forms.Label teamOneName;
         private System.Windows.Forms.Label teamTwoRoster;
         private System.Windows.Forms.Label teamOneRoster;
+        private System.Windows.Forms.Label headerName;
+        private System.Windows.Forms.Button removeParticipantBtn;
+        private System.Windows.Forms.ComboBox removeParticipant;
+        private System.Windows.Forms.Label dzestSpeletaju;
+        private System.Windows.Forms.Button toManageGameBtn;
     }
 }
 

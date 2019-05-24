@@ -1,4 +1,5 @@
 ﻿using BS.EntityData.Context;
+using System.Linq;
 
 namespace BS.BusinessLogic.Services
 {
@@ -23,10 +24,16 @@ namespace BS.BusinessLogic.Services
 
             return entity;
         }
+
+        public void RemoveParticipant(int id)
+        {
+            Delete(Dbset.Where(w => w.Id == id));
+        }
     }
 
     public interface IParticapantService : IService<Particapant>
     {
         Particapant CreateParticipant(string name, string surname, int number, int teamId, int matchId);
+        void RemoveParticipant(int id);
     }
 }

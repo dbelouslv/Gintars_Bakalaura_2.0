@@ -60,6 +60,28 @@ namespace BasketballStats
 
             foreach (var participant in TeamTwoParticipants)
                 teamTwoRoster.Text += $"#{participant.Number} {participant.FirstName} {participant.LastName}\n";
+
+            UpdateRemoveDropDown();
+        }
+
+        private void UpdateRemoveDropDown()
+        {
+            removeParticipant.Items.Clear();
+
+            var allParticipnats = TeamOneParticipants;
+            allParticipnats.AddRange(TeamTwoParticipants);
+
+            removeParticipantBtn.Visible = dzestSpeletaju.Visible 
+                = removeParticipant.Visible = allParticipnats.Count > 0;
+
+            foreach (var participant in allParticipnats)
+            {
+                var teamName = participant.TeamId == SelectedTeamOne.Id
+                    ? SelectedTeamOne.Name
+                    : SelectedTeamTwo.Name;
+
+                removeParticipant.Items.Add($"{participant.FirstName},{participant.LastName},{teamName}");
+            }
         }
 
         public void CreateTeam(object sender, EventArgs e)
@@ -121,28 +143,46 @@ namespace BasketballStats
             int number = 0;
 
             if (string.IsNullOrEmpty(nameInput.Text))
+            {
                 messageLabel.Text = "Ievadiet spēlētāja vārdu!";
+                return;
+            }
 
             if (string.IsNullOrEmpty(surnameInput.Text))
+            {
                 messageLabel.Text = "Ievadiet spēlētāja uzvārdu!";
+                return;
+            }
 
             if (string.IsNullOrEmpty(numberInput.Text))
+            {
                 messageLabel.Text = "Ievadiet spēlētāja numuru!";
+                return;
+            }
             else
             {
                 if (!int.TryParse(numberInput.Text, out number))
+                {
                     messageLabel.Text = "Nepareizs numura formāts!";
+                    return;
+                }
                 else
                 {
                     if (SelectedTeamOne.Name == selectedTeams.Text)
                     {
                         if (TeamOneParticipants.Any(a => a.Number == number))
+                        {
                             messageLabel.Text = "Šis numurs jau ir aizņemts!";
+                            return;
+                        }
                     }
                     else
                     {
                         if (TeamTwoParticipants.Any(a => a.Number == number))
+                        {
                             messageLabel.Text = "Šis numurs jau ir aizņemts!";
+                            return;
+                        }
                     }
                 }
             }
@@ -170,8 +210,64 @@ namespace BasketballStats
                 messageLabel.ForeColor = Color.Green;
                 messageLabel.Text = "Spēlētājs tika izveidots";
 
-                UpdateRosterLabels();
+                UpdateRosterLabels();                
             }
         }        
+
+        public void RemoveParticipant(object sender, EventArgs e)
+        {
+            var selectedItem = removeParticipant.SelectedItem.ToString();
+
+            if (!string.IsNullOrEmpty(selectedItem))
+            {
+                var allParticipant = TeamOneParticipants;
+                allParticipant.AddRange(TeamTwoParticipants);
+
+                var items = selectedItem.Split(',');
+                var firstName = items[0];
+                var lastName = items[1];
+                var teamName = items[2];
+
+                var currentPlayer = allParticipant
+                    .FirstOrDefault(f => f.FirstName == firstName && f.LastName == lastName && f.Team.Name == teamName);
+
+                if (currentPlayer != null)
+                {                                     
+                    if (SelectedTeamOne.Name == teamName)
+                    {
+                        TeamOneParticipants.Remove(currentPlayer);
+                    }
+                    else
+                    {
+                        TeamTwoParticipants.Remove(currentPlayer);
+                    }
+
+                    _participantService.RemoveParticipant(currentPlayer.Id);
+
+                    messageLabel.ForeColor = Color.Green;
+                    messageLabel.Text = "Spēlētājs tika nodzēst";
+                    removeParticipant.SelectedItem = string.Empty;
+
+                    UpdateRosterLabels();
+                }
+                else
+                {
+                    messageLabel.ForeColor = Color.Red;
+                    messageLabel.Text = "Spēlētājs neeksistē!";
+                }
+            }
+        }
+
+        private void ToManageGame(object sender, EventArgs e)
+        {
+            messageLabel.ForeColor = Color.Red;            
+
+            if (SelectedTeamOne.Id != 0 && SelectedTeamTwo.Id != 0)
+            {
+
+            }
+            else
+                messageLabel.Text = "Izvēlaties komandas!";
+        }
     }
 }
