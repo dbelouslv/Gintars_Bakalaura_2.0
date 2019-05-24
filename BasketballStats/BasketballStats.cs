@@ -56,6 +56,11 @@ namespace BasketballStats
                 numberInput.Visible = savePlayerBtn.Visible = selectedTeams.Visible = teamOneName.Visible =
                 teamTwoName.Visible = teamTwoRoster.Visible = teamOneRoster.Visible = toManageGameBtn.Visible = isShow;
 
+            selectedTeams.Items.Clear();
+            teamOneName.Text = teamTwoName.Text = string.Empty;
+
+            UpdateRosterLabels();
+
             if (isShow)
             {
                 selectedTeams.Items.Add(SelectedTeamOne.Name);
@@ -83,13 +88,14 @@ namespace BasketballStats
         {
             removeParticipant.Items.Clear();
 
-            var allParticipnats = TeamOneParticipants;
-            allParticipnats.AddRange(TeamTwoParticipants);
+            var allParticipants = new List<Particapant>();
+            allParticipants.AddRange(TeamOneParticipants);
+            allParticipants.AddRange(TeamTwoParticipants);
 
             removeParticipantBtn.Visible = dzestSpeletaju.Visible 
-                = removeParticipant.Visible = allParticipnats.Count > 0;
+                = removeParticipant.Visible = allParticipants.Count > 0;
 
-            foreach (var participant in allParticipnats)
+            foreach (var participant in allParticipants)
             {
                 var teamName = participant.TeamId == SelectedTeamOne.Id
                     ? SelectedTeamOne.Name
@@ -97,6 +103,24 @@ namespace BasketballStats
 
                 removeParticipant.Items.Add($"{participant.FirstName},{participant.LastName},{teamName}");
             }
+        }
+
+        private void ResetCreateGamePanel()
+        {
+            SelectedTeamOne = new Team();
+            SelectedTeamTwo = new Team();
+
+            TeamOneParticipants = new List<Particapant>();
+            TeamTwoParticipants = new List<Particapant>();
+
+            ShowCreateParticipantBlock(false);
+
+            var teams = _teamService.GetTeams();
+            selectedTeamOne.Items.Clear();
+            selectedTeamTwo.Items.Clear();
+
+            selectedTeamOne.Items.AddRange(teams);
+            selectedTeamTwo.Items.AddRange(teams);
         }
 
         public void CreateTeam(object sender, EventArgs e)
@@ -111,7 +135,7 @@ namespace BasketballStats
             messageLabel.ForeColor = success ? Color.Green : Color.Red;
 
             if (success)
-                CreateNewGame(sender, e);
+                ResetCreateGamePanel();
         }
 
         public void Exit(object sender, EventArgs e)
@@ -123,17 +147,9 @@ namespace BasketballStats
         {
             SetActivePanel(PanelType.CreateGame, "Izveidot Spēli", 170);
 
-            var teams = _teamService.GetTeams();
-
-            selectedTeamOne.Items.AddRange(teams);
-            selectedTeamTwo.Items.AddRange(teams);
-
             ActiveMatch = _matchService.CreateMatch();
 
-            SelectedTeamOne = new Team();
-            SelectedTeamTwo = new Team();
-            TeamOneParticipants = new List<Particapant>();
-            TeamTwoParticipants = new List<Particapant>();
+            ResetCreateGamePanel();
         }
 
         public void SelectTeam(object sender, EventArgs e)
@@ -242,7 +258,8 @@ namespace BasketballStats
 
             if (!string.IsNullOrEmpty(selectedItem))
             {
-                var allParticipant = TeamOneParticipants;
+                var allParticipant = new List<Particapant>();
+                allParticipant.AddRange(TeamOneParticipants);
                 allParticipant.AddRange(TeamTwoParticipants);
 
                 var items = selectedItem.Split(',');
