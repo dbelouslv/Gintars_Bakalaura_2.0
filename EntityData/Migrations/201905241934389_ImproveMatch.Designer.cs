@@ -13,7 +13,7 @@ namespace EntityData.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201905241928468_ImproveMatch"; }
+            get { return "201905241934389_ImproveMatch"; }
         }
         
         string IMigrationMetadata.Source

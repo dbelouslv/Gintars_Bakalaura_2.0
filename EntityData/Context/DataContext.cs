@@ -35,7 +35,7 @@ namespace BS.EntityData.Context
                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Match>()
-              .HasRequired(m => m.TeamTwo)
+              .HasOptional(m => m.TeamTwo)
               .WithMany()
               .HasForeignKey(m => m.TeamTwoId)
               .WillCascadeOnDelete(false);
