@@ -30,16 +30,21 @@ namespace BasketballStats
             _matchService = matchService;
         }
 
-        private void SetActivePanel(PanelType activePanel)
+        private void SetActivePanel(PanelType activePanel, string header, int height)
         {
+            headerName.Text = header;
 
+            switch (activePanel)
+            {
+
+            }
         }
 
         private void ShowCreateParticipantBlock(bool isShow)
         {
             izveidotSpeletaju.Visible = izveidotLabel.Visible = nameInput.Visible = surnameInput.Visible =
                 numberInput.Visible = savePlayerBtn.Visible = selectedTeams.Visible = teamOneName.Visible =
-                teamTwoName.Visible = teamTwoRoster.Visible = teamOneRoster.Visible = isShow;
+                teamTwoName.Visible = teamTwoRoster.Visible = teamOneRoster.Visible = toManageGameBtn.Visible = isShow;
 
             if (isShow)
             {
@@ -260,11 +265,51 @@ namespace BasketballStats
 
         private void ToManageGame(object sender, EventArgs e)
         {
-            messageLabel.ForeColor = Color.Red;            
+            messageLabel.ForeColor = Color.Red;
 
             if (SelectedTeamOne.Id != 0 && SelectedTeamTwo.Id != 0)
             {
+                ActiveMatch.TeamOneId = SelectedTeamOne.Id;
+                ActiveMatch.TeamTwoId = SelectedTeamTwo.Id;
 
+                if (!string.IsNullOrEmpty(reffereOne.Text) && !string.IsNullOrEmpty(reffereTwo.Text))
+                {
+                    ActiveMatch.ReffereOne = reffereOne.Text;
+                    ActiveMatch.ReffereTwo = reffereTwo.Text;
+
+                    if (!string.IsNullOrEmpty(placeInput.Text))
+                    {
+                        ActiveMatch.Place = placeInput.Text;
+
+                        if (DateTime.TryParse(dateInput.Text, out DateTime date))
+                        {
+                            var items = timeInput.Text.Split(':');
+
+                            if (int.TryParse(items[0], out int hours) && int.TryParse(items[1], out int min))
+                            {
+                                date = date.AddHours(hours);
+                                date = date.AddMinutes(min);
+
+                                ActiveMatch.Date = date;
+                                if (TeamOneParticipants.Count > 0 && TeamTwoParticipants.Count > 0)
+                                {
+                                    _matchService.UpdateMath(ActiveMatch);
+                                    SetActivePanel(PanelType.StartGame, "Kontrolēt spēli", 400);
+                                }
+                                else
+                                    messageLabel.Text = "Komandas sostavā nav spēlētāju!";
+                            }
+                            else
+                                messageLabel.Text = "Nepareizs laika formāts!";
+                        }
+                        else
+                            messageLabel.Text = "Nepareizs datuma formāts!";
+                    }
+                    else
+                        messageLabel.Text = "Vieta bija tukša!";
+                }
+                else
+                    messageLabel.Text = "Tiesnešu nav!";
             }
             else
                 messageLabel.Text = "Izvēlaties komandas!";

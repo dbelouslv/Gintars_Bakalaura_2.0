@@ -20,10 +20,16 @@ namespace BS.BusinessLogic.Services
 
             return entity;
         }
+
+        public void UpdateMath(Match activeMatch)
+        {
+            Update(activeMatch);
+        }
     }
 
     public interface IMatchService : IService<Match>
     {
         Match CreateMatch();
+        void UpdateMath(Match activeMatch);
     }
 }
