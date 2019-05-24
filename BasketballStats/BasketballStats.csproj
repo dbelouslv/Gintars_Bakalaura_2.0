@@ -108,6 +108,7 @@
     <Content Include="Content\ballz.png" />
     <Content Include="Content\create.png" />
     <Content Include="Content\home.png" />
+    <Content Include="Content\stats.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntityData\BS.EntityData.csproj">

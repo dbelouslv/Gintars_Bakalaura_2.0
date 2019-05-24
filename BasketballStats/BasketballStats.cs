@@ -28,15 +28,25 @@ namespace BasketballStats
             _teamService = teamService;
             _participantService = participantService;
             _matchService = matchService;
+
+            SetActivePanel(PanelType.Home, "Galvenā", 70);
         }
 
         private void SetActivePanel(PanelType activePanel, string header, int height)
         {
             headerName.Text = header;
+            leftSmallPanel.Top = height;
 
             switch (activePanel)
             {
-
+                case PanelType.CreateGame:
+                    Controls.Add(CreateGamePanel);
+                    Controls.Remove(HomePanel);
+                    break;
+                default:
+                    Controls.Add(HomePanel);
+                    Controls.Remove(CreateGamePanel);
+                    break;
             }
         }
 
@@ -111,12 +121,19 @@ namespace BasketballStats
 
         public void CreateNewGame(object sender, EventArgs e)
         {
+            SetActivePanel(PanelType.CreateGame, "Izveidot Spēli", 170);
+
             var teams = _teamService.GetTeams();
 
             selectedTeamOne.Items.AddRange(teams);
             selectedTeamTwo.Items.AddRange(teams);
 
-            ActiveMatch = _matchService.CreateMatch(); 
+            ActiveMatch = _matchService.CreateMatch();
+
+            SelectedTeamOne = new Team();
+            SelectedTeamTwo = new Team();
+            TeamOneParticipants = new List<Particapant>();
+            TeamTwoParticipants = new List<Particapant>();
         }
 
         public void SelectTeam(object sender, EventArgs e)
@@ -294,7 +311,7 @@ namespace BasketballStats
                                 if (TeamOneParticipants.Count > 0 && TeamTwoParticipants.Count > 0)
                                 {
                                     _matchService.UpdateMath(ActiveMatch);
-                                    SetActivePanel(PanelType.StartGame, "Kontrolēt spēli", 400);
+                                    SetActivePanel(PanelType.StartGame, "Kontrolēt spēli", 170);
                                 }
                                 else
                                     messageLabel.Text = "Komandas sostavā nav spēlētāju!";
@@ -313,6 +330,11 @@ namespace BasketballStats
             }
             else
                 messageLabel.Text = "Izvēlaties komandas!";
+        }
+
+        public void GoToHome(object sender, EventArgs e)
+        {
+            SetActivePanel(PanelType.Home, "Galvenā", 70);
         }
     }
 }

@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasketballStats));
             this.leftMenu = new System.Windows.Forms.Panel();
+            this.leftSmallPanel = new System.Windows.Forms.Panel();
             this.createGameBtn = new System.Windows.Forms.PictureBox();
             this.homeBtn = new System.Windows.Forms.PictureBox();
             this.blackTopPanel = new System.Windows.Forms.Panel();
@@ -41,6 +42,7 @@
             this.exitLabel = new System.Windows.Forms.Label();
             this.messageLabel = new System.Windows.Forms.Label();
             this.CreateGamePanel = new System.Windows.Forms.Panel();
+            this.toManageGameBtn = new System.Windows.Forms.Button();
             this.removeParticipantBtn = new System.Windows.Forms.Button();
             this.removeParticipant = new System.Windows.Forms.ComboBox();
             this.dzestSpeletaju = new System.Windows.Forms.Label();
@@ -79,7 +81,9 @@
             this.createTeamBtn = new System.Windows.Forms.Button();
             this.izveidotKomanduLabel = new System.Windows.Forms.Label();
             this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toManageGameBtn = new System.Windows.Forms.Button();
+            this.HomePanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.statisticBtn = new System.Windows.Forms.PictureBox();
             this.leftMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeBtn)).BeginInit();
@@ -88,11 +92,15 @@
             this.topMenu.SuspendLayout();
             this.CreateGamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teamBindingSource)).BeginInit();
+            this.HomePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).BeginInit();
             this.SuspendLayout();
             // 
             // leftMenu
             // 
             this.leftMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.leftMenu.Controls.Add(this.statisticBtn);
+            this.leftMenu.Controls.Add(this.leftSmallPanel);
             this.leftMenu.Controls.Add(this.createGameBtn);
             this.leftMenu.Controls.Add(this.homeBtn);
             this.leftMenu.Controls.Add(this.blackTopPanel);
@@ -100,6 +108,14 @@
             this.leftMenu.Name = "leftMenu";
             this.leftMenu.Size = new System.Drawing.Size(230, 680);
             this.leftMenu.TabIndex = 0;
+            // 
+            // leftSmallPanel
+            // 
+            this.leftSmallPanel.BackColor = System.Drawing.Color.Black;
+            this.leftSmallPanel.Location = new System.Drawing.Point(0, 70);
+            this.leftSmallPanel.Name = "leftSmallPanel";
+            this.leftSmallPanel.Size = new System.Drawing.Size(8, 115);
+            this.leftSmallPanel.TabIndex = 3;
             // 
             // createGameBtn
             // 
@@ -123,6 +139,7 @@
             this.homeBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.homeBtn.TabIndex = 1;
             this.homeBtn.TabStop = false;
+            this.homeBtn.Click += new System.EventHandler(this.GoToHome);
             // 
             // blackTopPanel
             // 
@@ -243,6 +260,22 @@
             this.CreateGamePanel.Name = "CreateGamePanel";
             this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
             this.CreateGamePanel.TabIndex = 2;
+            // 
+            // toManageGameBtn
+            // 
+            this.toManageGameBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.toManageGameBtn.FlatAppearance.BorderSize = 2;
+            this.toManageGameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.toManageGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toManageGameBtn.ForeColor = System.Drawing.Color.Black;
+            this.toManageGameBtn.Location = new System.Drawing.Point(680, 561);
+            this.toManageGameBtn.Name = "toManageGameBtn";
+            this.toManageGameBtn.Size = new System.Drawing.Size(91, 26);
+            this.toManageGameBtn.TabIndex = 32;
+            this.toManageGameBtn.Text = "TĀLĀK";
+            this.toManageGameBtn.UseVisualStyleBackColor = true;
+            this.toManageGameBtn.Visible = false;
+            this.toManageGameBtn.Click += new System.EventHandler(this.ToManageGame);
             // 
             // removeParticipantBtn
             // 
@@ -627,21 +660,34 @@
             // 
             this.teamBindingSource.DataSource = typeof(BS.EntityData.Context.Team);
             // 
-            // toManageGameBtn
+            // HomePanel
             // 
-            this.toManageGameBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.toManageGameBtn.FlatAppearance.BorderSize = 2;
-            this.toManageGameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.toManageGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.toManageGameBtn.ForeColor = System.Drawing.Color.Black;
-            this.toManageGameBtn.Location = new System.Drawing.Point(680, 561);
-            this.toManageGameBtn.Name = "toManageGameBtn";
-            this.toManageGameBtn.Size = new System.Drawing.Size(91, 26);
-            this.toManageGameBtn.TabIndex = 32;
-            this.toManageGameBtn.Text = "TĀLĀK";
-            this.toManageGameBtn.UseVisualStyleBackColor = true;
-            this.toManageGameBtn.Visible = false;
-            this.toManageGameBtn.Click += new System.EventHandler(this.ToManageGame);
+            this.HomePanel.Controls.Add(this.label2);
+            this.HomePanel.Location = new System.Drawing.Point(230, 70);
+            this.HomePanel.Name = "HomePanel";
+            this.HomePanel.Size = new System.Drawing.Size(790, 610);
+            this.HomePanel.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(10, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(398, 25);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "GINTARS LAZDA BAKALAURA DARBS";
+            // 
+            // statisticBtn
+            // 
+            this.statisticBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.statisticBtn.Image = ((System.Drawing.Image)(resources.GetObject("statisticBtn.Image")));
+            this.statisticBtn.Location = new System.Drawing.Point(50, 298);
+            this.statisticBtn.Name = "statisticBtn";
+            this.statisticBtn.Size = new System.Drawing.Size(107, 96);
+            this.statisticBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.statisticBtn.TabIndex = 4;
+            this.statisticBtn.TabStop = false;
             // 
             // BasketballStats
             // 
@@ -649,6 +695,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1020, 680);
+            this.Controls.Add(this.HomePanel);
             this.Controls.Add(this.CreateGamePanel);
             this.Controls.Add(this.topMenu);
             this.Controls.Add(this.leftMenu);
@@ -667,6 +714,9 @@
             this.CreateGamePanel.ResumeLayout(false);
             this.CreateGamePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teamBindingSource)).EndInit();
+            this.HomePanel.ResumeLayout(false);
+            this.HomePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -723,6 +773,10 @@
         private System.Windows.Forms.ComboBox removeParticipant;
         private System.Windows.Forms.Label dzestSpeletaju;
         private System.Windows.Forms.Button toManageGameBtn;
+        private System.Windows.Forms.Panel leftSmallPanel;
+        private System.Windows.Forms.Panel HomePanel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox statisticBtn;
     }
 }
 
