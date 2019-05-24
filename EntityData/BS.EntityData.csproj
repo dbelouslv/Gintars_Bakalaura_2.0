@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201905241908438_Participants.Designer.cs">
       <DependentUpon>201905241908438_Participants.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905241928468_ImproveMatch.cs" />
+    <Compile Include="Migrations\201905241928468_ImproveMatch.Designer.cs">
+      <DependentUpon>201905241928468_ImproveMatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905241908438_Participants.resx">
       <DependentUpon>201905241908438_Participants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905241928468_ImproveMatch.resx">
+      <DependentUpon>201905241928468_ImproveMatch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

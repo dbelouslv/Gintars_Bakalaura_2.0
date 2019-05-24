@@ -62,6 +62,8 @@ namespace BasketballStats.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ITeamService>().To<TeamService>();
+            kernel.Bind<IParticapantService>().To<ParticapantService>();
+            kernel.Bind<IMatchService>().To<MatchService>();
         }        
     }
 }

@@ -2,6 +2,7 @@
 using BS.EntityData.Context;
 using EntityData.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,15 +11,22 @@ namespace BasketballStats
     public partial class BasketballStats : Form
     {
         private readonly ITeamService _teamService;
+        private readonly IParticapantService _participantService;
+        private readonly IMatchService _matchService;
 
         private Team SelectedTeamOne = new Team();
         private Team SelectedTeamTwo = new Team();
+        private List<Particapant> TeamOneParticipants = new List<Particapant>();
+        private List<Particapant> TeamTwoParticipants = new List<Particapant>();
+        private Match ActiveMatch = new Match();
 
-        public BasketballStats(ITeamService teamService)
+        public BasketballStats(ITeamService teamService, IParticapantService participantService, IMatchService matchService)
         {
             InitializeComponent();
 
             _teamService = teamService;
+            _participantService = participantService;
+            _matchService = matchService;
         }
 
         private void SetActivePanel(PanelType activePanel)
@@ -52,6 +60,8 @@ namespace BasketballStats
 
             selectedTeamOne.Items.AddRange(teams);
             selectedTeamTwo.Items.AddRange(teams);
+
+            ActiveMatch = _matchService.CreateMatch(); 
         }
 
         public void SelectTeam(object sender, EventArgs e)
@@ -90,12 +100,15 @@ namespace BasketballStats
 
             if (messageLabel.Text == string.Empty)
             {
+                var currentPlayer = new Particapant();
+
                 if (SelectedTeamOne.Name == selectedTeams.Text)
                 {
-
+                    currentPlayer = _participantService.CreateParticipant(nameInput.Text, surnameInput.Text, number, SelectedTeamOne.Id, ActiveMatch.Id);
                 }
                 else
                 {
+                    currentPlayer = _participantService.CreateParticipant(nameInput.Text, surnameInput.Text, number, SelectedTeamTwo.Id, ActiveMatch.Id);
 
                 }
 

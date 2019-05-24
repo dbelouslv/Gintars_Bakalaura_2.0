@@ -68,6 +68,8 @@
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\MatchService.cs" />
+    <Compile Include="Services\ParticipantService.cs" />
     <Compile Include="Services\TeamService.cs" />
   </ItemGroup>
   <ItemGroup>

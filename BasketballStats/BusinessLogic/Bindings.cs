@@ -10,6 +10,8 @@ namespace BS.BusinessLogic
         {
             Bind<IDataContext>().To<DataContext>();
             Bind<ITeamService>().To<TeamService>();
+            Bind<IParticapantService>().To<ParticapantService>();
+            Bind<IMatchService>().To<MatchService>();
         }
     }
 }

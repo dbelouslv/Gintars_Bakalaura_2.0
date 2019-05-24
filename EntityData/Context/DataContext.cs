@@ -11,6 +11,7 @@ namespace BS.EntityData.Context
 
         DbSet<Team> Teams { get; set; }
         DbSet<Match> Matches { get; set; }
+        DbSet<Particapant> Particapants { get; set; }
     }
 
     public partial class DataContext : DbContext, IDataContext
@@ -23,11 +24,12 @@ namespace BS.EntityData.Context
 
         public DbSet<Team> Teams { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<Particapant> Particapants { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Match>()
-               .HasRequired(m => m.TeamOne)
+               .HasOptional(m => m.TeamOne)
                .WithMany()
                .HasForeignKey(m => m.TeamOneId)
                .WillCascadeOnDelete(false);
