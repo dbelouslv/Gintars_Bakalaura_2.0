@@ -70,5 +70,37 @@ namespace BasketballStats
                 selectedTeamOne.Items.Remove(item);
             }
         }
+
+        private void SavePlayer(object sender, EventArgs e)
+        {
+            messageLabel.Text = string.Empty;
+            messageLabel.ForeColor = Color.Red;
+
+            if (string.IsNullOrEmpty(nameInput.Text))
+                messageLabel.Text = "Ievadiet spēlētāja vārdu!";
+
+            if (string.IsNullOrEmpty(surnameInput.Text))
+                messageLabel.Text = "Ievadiet spēlētāja uzvārdu!";
+
+            if (!int.TryParse(numberInput.Text, out int number))
+                messageLabel.Text = "Ievadiet spēlētāja numuru!";
+
+            if (selectedTeams.Text == string.Empty)
+                messageLabel.Text = "Izvēlaties komandu!";
+
+            if (messageLabel.Text == string.Empty)
+            {
+                if (SelectedTeamOne.Name == selectedTeams.Text)
+                {
+
+                }
+                else
+                {
+
+                }
+
+                selectedTeams.Text = nameInput.Text = surnameInput.Text = numberInput.Text = string.Empty;
+            }
+        }
     }
 }

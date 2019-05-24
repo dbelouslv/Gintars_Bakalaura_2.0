@@ -40,6 +40,27 @@
             this.exitLabel = new System.Windows.Forms.Label();
             this.messageLabel = new System.Windows.Forms.Label();
             this.CreateGamePanel = new System.Windows.Forms.Panel();
+            this.izveidotSpeletaju = new System.Windows.Forms.Label();
+            this.savePlayerBtn = new System.Windows.Forms.Button();
+            this.selectedTeams = new System.Windows.Forms.ComboBox();
+            this.numberInput = new System.Windows.Forms.TextBox();
+            this.surnameInput = new System.Windows.Forms.TextBox();
+            this.nameInput = new System.Windows.Forms.TextBox();
+            this.izveidotLabel = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.timeInput = new System.Windows.Forms.TextBox();
+            this.vieta = new System.Windows.Forms.Label();
+            this.placeInput = new System.Windows.Forms.TextBox();
+            this.dateInput = new System.Windows.Forms.TextBox();
+            this.datums = new System.Windows.Forms.Label();
+            this.hrThird = new System.Windows.Forms.Panel();
+            this.nLabel4 = new System.Windows.Forms.Label();
+            this.nLabel3 = new System.Windows.Forms.Label();
+            this.reffereTwo = new System.Windows.Forms.TextBox();
+            this.reffereOne = new System.Windows.Forms.TextBox();
+            this.tiesnesi = new System.Windows.Forms.Label();
+            this.hrSecond = new System.Windows.Forms.Panel();
             this.nLabel2 = new System.Windows.Forms.Label();
             this.nLabel1 = new System.Windows.Forms.Label();
             this.selectedTeamTwo = new System.Windows.Forms.ComboBox();
@@ -50,19 +71,6 @@
             this.createTeamBtn = new System.Windows.Forms.Button();
             this.izveidotKomanduLabel = new System.Windows.Forms.Label();
             this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.hrSecond = new System.Windows.Forms.Panel();
-            this.tiesniesi = new System.Windows.Forms.Label();
-            this.reffereOne = new System.Windows.Forms.TextBox();
-            this.reffereTwo = new System.Windows.Forms.TextBox();
-            this.nLabel3 = new System.Windows.Forms.Label();
-            this.nLabel4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.datums = new System.Windows.Forms.Label();
-            this.dateInput = new System.Windows.Forms.TextBox();
-            this.placeInput = new System.Windows.Forms.TextBox();
-            this.vieta = new System.Windows.Forms.Label();
-            this.timeInput = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.leftMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeBtn)).BeginInit();
@@ -171,18 +179,26 @@
             // 
             // CreateGamePanel
             // 
+            this.CreateGamePanel.Controls.Add(this.izveidotSpeletaju);
+            this.CreateGamePanel.Controls.Add(this.savePlayerBtn);
+            this.CreateGamePanel.Controls.Add(this.selectedTeams);
+            this.CreateGamePanel.Controls.Add(this.numberInput);
+            this.CreateGamePanel.Controls.Add(this.surnameInput);
+            this.CreateGamePanel.Controls.Add(this.nameInput);
+            this.CreateGamePanel.Controls.Add(this.izveidotLabel);
+            this.CreateGamePanel.Controls.Add(this.panel1);
             this.CreateGamePanel.Controls.Add(this.label1);
             this.CreateGamePanel.Controls.Add(this.timeInput);
             this.CreateGamePanel.Controls.Add(this.vieta);
             this.CreateGamePanel.Controls.Add(this.placeInput);
             this.CreateGamePanel.Controls.Add(this.dateInput);
             this.CreateGamePanel.Controls.Add(this.datums);
-            this.CreateGamePanel.Controls.Add(this.panel1);
+            this.CreateGamePanel.Controls.Add(this.hrThird);
             this.CreateGamePanel.Controls.Add(this.nLabel4);
             this.CreateGamePanel.Controls.Add(this.nLabel3);
             this.CreateGamePanel.Controls.Add(this.reffereTwo);
             this.CreateGamePanel.Controls.Add(this.reffereOne);
-            this.CreateGamePanel.Controls.Add(this.tiesniesi);
+            this.CreateGamePanel.Controls.Add(this.tiesnesi);
             this.CreateGamePanel.Controls.Add(this.hrSecond);
             this.CreateGamePanel.Controls.Add(this.nLabel2);
             this.CreateGamePanel.Controls.Add(this.nLabel1);
@@ -197,6 +213,201 @@
             this.CreateGamePanel.Name = "CreateGamePanel";
             this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
             this.CreateGamePanel.TabIndex = 2;
+            // 
+            // izveidotSpeletaju
+            // 
+            this.izveidotSpeletaju.AutoSize = true;
+            this.izveidotSpeletaju.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.izveidotSpeletaju.Location = new System.Drawing.Point(11, 175);
+            this.izveidotSpeletaju.Name = "izveidotSpeletaju";
+            this.izveidotSpeletaju.Size = new System.Drawing.Size(150, 20);
+            this.izveidotSpeletaju.TabIndex = 26;
+            this.izveidotSpeletaju.Text = "Izveidot spēlētāju";
+            // 
+            // savePlayerBtn
+            // 
+            this.savePlayerBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.savePlayerBtn.FlatAppearance.BorderSize = 2;
+            this.savePlayerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.savePlayerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.savePlayerBtn.ForeColor = System.Drawing.Color.Black;
+            this.savePlayerBtn.Location = new System.Drawing.Point(724, 172);
+            this.savePlayerBtn.Name = "savePlayerBtn";
+            this.savePlayerBtn.Size = new System.Drawing.Size(47, 26);
+            this.savePlayerBtn.TabIndex = 25;
+            this.savePlayerBtn.Text = "OK";
+            this.savePlayerBtn.UseVisualStyleBackColor = true;
+            this.savePlayerBtn.Click += new System.EventHandler(this.SavePlayer);
+            // 
+            // selectedTeams
+            // 
+            this.selectedTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selectedTeams.FormattingEnabled = true;
+            this.selectedTeams.Location = new System.Drawing.Point(543, 172);
+            this.selectedTeams.MaxDropDownItems = 24;
+            this.selectedTeams.Name = "selectedTeams";
+            this.selectedTeams.Size = new System.Drawing.Size(168, 26);
+            this.selectedTeams.TabIndex = 24;
+            // 
+            // numberInput
+            // 
+            this.numberInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numberInput.Location = new System.Drawing.Point(484, 172);
+            this.numberInput.Name = "numberInput";
+            this.numberInput.Size = new System.Drawing.Size(45, 26);
+            this.numberInput.TabIndex = 23;
+            // 
+            // surnameInput
+            // 
+            this.surnameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.surnameInput.Location = new System.Drawing.Point(328, 172);
+            this.surnameInput.Name = "surnameInput";
+            this.surnameInput.Size = new System.Drawing.Size(150, 26);
+            this.surnameInput.TabIndex = 22;
+            // 
+            // nameInput
+            // 
+            this.nameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nameInput.Location = new System.Drawing.Point(172, 172);
+            this.nameInput.Name = "nameInput";
+            this.nameInput.Size = new System.Drawing.Size(150, 26);
+            this.nameInput.TabIndex = 21;
+            // 
+            // izveidotLabel
+            // 
+            this.izveidotLabel.AutoSize = true;
+            this.izveidotLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.izveidotLabel.Location = new System.Drawing.Point(161, 139);
+            this.izveidotLabel.Name = "izveidotLabel";
+            this.izveidotLabel.Size = new System.Drawing.Size(512, 20);
+            this.izveidotLabel.TabIndex = 20;
+            this.izveidotLabel.Text = "             Vārds                    Uzvārds       Numurs           Komanda";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Location = new System.Drawing.Point(15, 121);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(760, 2);
+            this.panel1.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(720, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Laiks";
+            // 
+            // timeInput
+            // 
+            this.timeInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timeInput.Location = new System.Drawing.Point(717, 26);
+            this.timeInput.Name = "timeInput";
+            this.timeInput.Size = new System.Drawing.Size(61, 26);
+            this.timeInput.TabIndex = 8;
+            // 
+            // vieta
+            // 
+            this.vieta.AutoSize = true;
+            this.vieta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.vieta.Location = new System.Drawing.Point(650, 61);
+            this.vieta.Name = "vieta";
+            this.vieta.Size = new System.Drawing.Size(51, 20);
+            this.vieta.TabIndex = 17;
+            this.vieta.Text = "Vieta";
+            // 
+            // placeInput
+            // 
+            this.placeInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.placeInput.Location = new System.Drawing.Point(583, 84);
+            this.placeInput.Name = "placeInput";
+            this.placeInput.Size = new System.Drawing.Size(195, 26);
+            this.placeInput.TabIndex = 9;
+            // 
+            // dateInput
+            // 
+            this.dateInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateInput.Location = new System.Drawing.Point(583, 26);
+            this.dateInput.Name = "dateInput";
+            this.dateInput.Size = new System.Drawing.Size(128, 26);
+            this.dateInput.TabIndex = 7;
+            // 
+            // datums
+            // 
+            this.datums.AutoSize = true;
+            this.datums.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.datums.Location = new System.Drawing.Point(612, 3);
+            this.datums.Name = "datums";
+            this.datums.Size = new System.Drawing.Size(71, 20);
+            this.datums.TabIndex = 14;
+            this.datums.Text = "Datums";
+            // 
+            // hrThird
+            // 
+            this.hrThird.BackColor = System.Drawing.Color.Black;
+            this.hrThird.Location = new System.Drawing.Point(575, 5);
+            this.hrThird.Name = "hrThird";
+            this.hrThird.Size = new System.Drawing.Size(2, 110);
+            this.hrThird.TabIndex = 5;
+            // 
+            // nLabel4
+            // 
+            this.nLabel4.AutoSize = true;
+            this.nLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.nLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nLabel4.Location = new System.Drawing.Point(393, 85);
+            this.nLabel4.Name = "nLabel4";
+            this.nLabel4.Size = new System.Drawing.Size(24, 20);
+            this.nLabel4.TabIndex = 13;
+            this.nLabel4.Text = "2.";
+            // 
+            // nLabel3
+            // 
+            this.nLabel3.AutoSize = true;
+            this.nLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.nLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nLabel3.Location = new System.Drawing.Point(393, 44);
+            this.nLabel3.Name = "nLabel3";
+            this.nLabel3.Size = new System.Drawing.Size(24, 20);
+            this.nLabel3.TabIndex = 12;
+            this.nLabel3.Text = "1.";
+            // 
+            // reffereTwo
+            // 
+            this.reffereTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reffereTwo.Location = new System.Drawing.Point(419, 82);
+            this.reffereTwo.Name = "reffereTwo";
+            this.reffereTwo.Size = new System.Drawing.Size(150, 26);
+            this.reffereTwo.TabIndex = 6;
+            // 
+            // reffereOne
+            // 
+            this.reffereOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reffereOne.Location = new System.Drawing.Point(419, 40);
+            this.reffereOne.Name = "reffereOne";
+            this.reffereOne.Size = new System.Drawing.Size(150, 26);
+            this.reffereOne.TabIndex = 5;
+            // 
+            // tiesnesi
+            // 
+            this.tiesnesi.AutoSize = true;
+            this.tiesnesi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tiesnesi.Location = new System.Drawing.Point(440, 3);
+            this.tiesnesi.Name = "tiesnesi";
+            this.tiesnesi.Size = new System.Drawing.Size(75, 20);
+            this.tiesnesi.TabIndex = 9;
+            this.tiesnesi.Text = "Tiesneši";
+            // 
+            // hrSecond
+            // 
+            this.hrSecond.BackColor = System.Drawing.Color.Black;
+            this.hrSecond.Location = new System.Drawing.Point(390, 5);
+            this.hrSecond.Name = "hrSecond";
+            this.hrSecond.Size = new System.Drawing.Size(2, 110);
+            this.hrSecond.TabIndex = 4;
             // 
             // nLabel2
             // 
@@ -222,21 +433,23 @@
             // 
             // selectedTeamTwo
             // 
-            this.selectedTeamTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selectedTeamTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.selectedTeamTwo.FormattingEnabled = true;
             this.selectedTeamTwo.Location = new System.Drawing.Point(212, 82);
+            this.selectedTeamTwo.MaxDropDownItems = 24;
             this.selectedTeamTwo.Name = "selectedTeamTwo";
-            this.selectedTeamTwo.Size = new System.Drawing.Size(168, 24);
+            this.selectedTeamTwo.Size = new System.Drawing.Size(168, 26);
             this.selectedTeamTwo.TabIndex = 4;
             this.selectedTeamTwo.SelectionChangeCommitted += new System.EventHandler(this.SelectTeam);
             // 
             // selectedTeamOne
             // 
-            this.selectedTeamOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selectedTeamOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.selectedTeamOne.FormattingEnabled = true;
             this.selectedTeamOne.Location = new System.Drawing.Point(212, 40);
+            this.selectedTeamOne.MaxDropDownItems = 24;
             this.selectedTeamOne.Name = "selectedTeamOne";
-            this.selectedTeamOne.Size = new System.Drawing.Size(168, 24);
+            this.selectedTeamOne.Size = new System.Drawing.Size(168, 26);
             this.selectedTeamOne.TabIndex = 3;
             this.selectedTeamOne.SelectionChangeCommitted += new System.EventHandler(this.SelectTeam);
             // 
@@ -295,124 +508,6 @@
             // 
             this.teamBindingSource.DataSource = typeof(BS.EntityData.Context.Team);
             // 
-            // hrSecond
-            // 
-            this.hrSecond.BackColor = System.Drawing.Color.Black;
-            this.hrSecond.Location = new System.Drawing.Point(390, 5);
-            this.hrSecond.Name = "hrSecond";
-            this.hrSecond.Size = new System.Drawing.Size(2, 110);
-            this.hrSecond.TabIndex = 4;
-            // 
-            // tiesniesi
-            // 
-            this.tiesniesi.AutoSize = true;
-            this.tiesniesi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tiesniesi.Location = new System.Drawing.Point(440, 3);
-            this.tiesniesi.Name = "tiesniesi";
-            this.tiesniesi.Size = new System.Drawing.Size(79, 20);
-            this.tiesniesi.TabIndex = 9;
-            this.tiesniesi.Text = "Tiesnieši";
-            // 
-            // reffereOne
-            // 
-            this.reffereOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reffereOne.Location = new System.Drawing.Point(419, 40);
-            this.reffereOne.Name = "reffereOne";
-            this.reffereOne.Size = new System.Drawing.Size(150, 26);
-            this.reffereOne.TabIndex = 5;
-            // 
-            // reffereTwo
-            // 
-            this.reffereTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.reffereTwo.Location = new System.Drawing.Point(419, 79);
-            this.reffereTwo.Name = "reffereTwo";
-            this.reffereTwo.Size = new System.Drawing.Size(150, 26);
-            this.reffereTwo.TabIndex = 6;
-            // 
-            // nLabel3
-            // 
-            this.nLabel3.AutoSize = true;
-            this.nLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.nLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nLabel3.Location = new System.Drawing.Point(393, 44);
-            this.nLabel3.Name = "nLabel3";
-            this.nLabel3.Size = new System.Drawing.Size(24, 20);
-            this.nLabel3.TabIndex = 12;
-            this.nLabel3.Text = "1.";
-            // 
-            // nLabel4
-            // 
-            this.nLabel4.AutoSize = true;
-            this.nLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.nLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nLabel4.Location = new System.Drawing.Point(393, 82);
-            this.nLabel4.Name = "nLabel4";
-            this.nLabel4.Size = new System.Drawing.Size(24, 20);
-            this.nLabel4.TabIndex = 13;
-            this.nLabel4.Text = "2.";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(575, 5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2, 110);
-            this.panel1.TabIndex = 5;
-            // 
-            // datums
-            // 
-            this.datums.AutoSize = true;
-            this.datums.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.datums.Location = new System.Drawing.Point(612, 3);
-            this.datums.Name = "datums";
-            this.datums.Size = new System.Drawing.Size(71, 20);
-            this.datums.TabIndex = 14;
-            this.datums.Text = "Datums";
-            // 
-            // dateInput
-            // 
-            this.dateInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateInput.Location = new System.Drawing.Point(583, 26);
-            this.dateInput.Name = "dateInput";
-            this.dateInput.Size = new System.Drawing.Size(128, 26);
-            this.dateInput.TabIndex = 7;
-            // 
-            // placeInput
-            // 
-            this.placeInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.placeInput.Location = new System.Drawing.Point(583, 79);
-            this.placeInput.Name = "placeInput";
-            this.placeInput.Size = new System.Drawing.Size(195, 26);
-            this.placeInput.TabIndex = 9;
-            // 
-            // vieta
-            // 
-            this.vieta.AutoSize = true;
-            this.vieta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.vieta.Location = new System.Drawing.Point(650, 56);
-            this.vieta.Name = "vieta";
-            this.vieta.Size = new System.Drawing.Size(51, 20);
-            this.vieta.TabIndex = 17;
-            this.vieta.Text = "Vieta";
-            // 
-            // timeInput
-            // 
-            this.timeInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.timeInput.Location = new System.Drawing.Point(717, 26);
-            this.timeInput.Name = "timeInput";
-            this.timeInput.Size = new System.Drawing.Size(61, 26);
-            this.timeInput.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(720, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Laiks";
-            // 
             // BasketballStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,14 +563,22 @@
         private System.Windows.Forms.Label nLabel3;
         private System.Windows.Forms.TextBox reffereTwo;
         private System.Windows.Forms.TextBox reffereOne;
-        private System.Windows.Forms.Label tiesniesi;
+        private System.Windows.Forms.Label tiesnesi;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox timeInput;
         private System.Windows.Forms.Label vieta;
         private System.Windows.Forms.TextBox placeInput;
         private System.Windows.Forms.TextBox dateInput;
         private System.Windows.Forms.Label datums;
+        private System.Windows.Forms.Panel hrThird;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label izveidotSpeletaju;
+        private System.Windows.Forms.Button savePlayerBtn;
+        private System.Windows.Forms.ComboBox selectedTeams;
+        private System.Windows.Forms.TextBox numberInput;
+        private System.Windows.Forms.TextBox surnameInput;
+        private System.Windows.Forms.TextBox nameInput;
+        private System.Windows.Forms.Label izveidotLabel;
     }
 }
 

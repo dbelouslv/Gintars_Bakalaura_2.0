@@ -49,12 +49,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\DataContext.cs" />
+    <Compile Include="Context\Particapant.cs" />
     <Compile Include="Context\Team.cs" />
     <Compile Include="Context\Match.cs" />
     <Compile Include="Helpers\Enumeration.cs" />
     <Compile Include="Migrations\201905231851048_TeamAndMatches.cs" />
     <Compile Include="Migrations\201905231851048_TeamAndMatches.Designer.cs">
       <DependentUpon>201905231851048_TeamAndMatches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905241908438_Participants.cs" />
+    <Compile Include="Migrations\201905241908438_Participants.Designer.cs">
+      <DependentUpon>201905241908438_Participants.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +71,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905231851048_TeamAndMatches.resx">
       <DependentUpon>201905231851048_TeamAndMatches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905241908438_Participants.resx">
+      <DependentUpon>201905241908438_Participants.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
