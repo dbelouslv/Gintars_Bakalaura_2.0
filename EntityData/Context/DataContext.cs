@@ -37,6 +37,18 @@ namespace BS.EntityData.Context
               .WithMany()
               .HasForeignKey(m => m.TeamTwoId)
               .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Particapant>()
+              .HasRequired(m => m.Match)
+              .WithMany(m => m.Participants)
+              .HasForeignKey(m => m.MatchId)
+              .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Particapant>()
+              .HasRequired(m => m.Team)
+              .WithMany(m => m.Participants)
+              .HasForeignKey(m => m.TeamId)
+              .WillCascadeOnDelete(false);
         }
     }
 }
