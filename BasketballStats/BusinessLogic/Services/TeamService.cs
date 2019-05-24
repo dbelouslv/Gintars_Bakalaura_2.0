@@ -1,6 +1,5 @@
 ﻿using BS.EntityData.Context;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BS.BusinessLogic.Services
@@ -11,9 +10,9 @@ namespace BS.BusinessLogic.Services
         {
         }
 
-        public List<Team> GetTeams()
+        public string[] GetTeams()
         {
-            return Dbset.ToList();
+            return Dbset.Select(s => s.Name).ToArray();
         }
 
         public bool CreateTeam(string teamName)
@@ -31,11 +30,17 @@ namespace BS.BusinessLogic.Services
 
             return false;
         }
+
+        public Team GetTeamByName(string name)
+        {
+            return Dbset.FirstOrDefault(w => w.Name == name);
+        }
     }
 
     public interface ITeamService : IService<Team>
     {
-       List<Team> GetTeams();
-       bool CreateTeam(string teamName);        
+        string[] GetTeams();
+        bool CreateTeam(string teamName);
+        Team GetTeamByName(string name);
     }
 }

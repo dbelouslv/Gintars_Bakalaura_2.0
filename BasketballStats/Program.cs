@@ -1,5 +1,5 @@
 ﻿using BS.BusinessLogic;
-using EP.BusinessLogic.Services;
+using BS.BusinessLogic.Services;
 using Ninject;
 using System;
 using System.Windows.Forms;

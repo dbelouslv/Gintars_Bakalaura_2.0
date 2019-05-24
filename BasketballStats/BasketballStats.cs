@@ -29,9 +29,16 @@ namespace BasketballStats
         public void CreateTeam(object sender, EventArgs e)
         {
             var success = _teamService.CreateTeam(newTeamInput.Text);
+            newTeamInput.Text = string.Empty;
 
-            messageLabel.Text = success ? "Komanda tika izveidota" : "Kļūda, komanda ar šādu nosaukumu jau eksistē";
+            messageLabel.Text = !success
+                ? "Kļūda, komanda ar šādu nosaukumu jau eksistē"
+                : "Komanda tika izveidota";
+
             messageLabel.ForeColor = success ? Color.Green : Color.Red;
+
+            if (success)
+                CreateNewGame(sender, e);
         }
 
         public void Exit(object sender, EventArgs e)
@@ -49,12 +56,19 @@ namespace BasketballStats
 
         public void SelectTeam(object sender, EventArgs e)
         {
-            ComboBox clickedItem = (ComboBox)sender;
+            var clickedItem = (ComboBox)sender;
+            var item = clickedItem.SelectedItem.ToString();
 
             if (clickedItem.Name == "selectedTeamOne")
-                SelectedTeamOne = clickedItem.SelectedItem;
+            {              
+                SelectedTeamOne = _teamService.GetTeamByName(item);
+                selectedTeamTwo.Items.Remove(item);
+            }
             else
-                SelectedTeamTwo = clickedItem.SelectedItem;
+            {
+                SelectedTeamTwo = _teamService.GetTeamByName(clickedItem.SelectedItem.ToString());
+                selectedTeamOne.Items.Remove(item);
+            }
         }
     }
 }

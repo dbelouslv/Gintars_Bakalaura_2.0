@@ -40,16 +40,29 @@
             this.exitLabel = new System.Windows.Forms.Label();
             this.messageLabel = new System.Windows.Forms.Label();
             this.CreateGamePanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.nLabel2 = new System.Windows.Forms.Label();
+            this.nLabel1 = new System.Windows.Forms.Label();
             this.selectedTeamTwo = new System.Windows.Forms.ComboBox();
             this.selectedTeamOne = new System.Windows.Forms.ComboBox();
             this.izveletiesKomandas = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.hrFirst = new System.Windows.Forms.Panel();
             this.newTeamInput = new System.Windows.Forms.TextBox();
             this.createTeamBtn = new System.Windows.Forms.Button();
             this.izveidotKomanduLabel = new System.Windows.Forms.Label();
             this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.hrSecond = new System.Windows.Forms.Panel();
+            this.tiesniesi = new System.Windows.Forms.Label();
+            this.reffereOne = new System.Windows.Forms.TextBox();
+            this.reffereTwo = new System.Windows.Forms.TextBox();
+            this.nLabel3 = new System.Windows.Forms.Label();
+            this.nLabel4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.datums = new System.Windows.Forms.Label();
+            this.dateInput = new System.Windows.Forms.TextBox();
+            this.placeInput = new System.Windows.Forms.TextBox();
+            this.vieta = new System.Windows.Forms.Label();
+            this.timeInput = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.leftMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeBtn)).BeginInit();
@@ -73,6 +86,7 @@
             // 
             // createGameBtn
             // 
+            this.createGameBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createGameBtn.Image = ((System.Drawing.Image)(resources.GetObject("createGameBtn.Image")));
             this.createGameBtn.Location = new System.Drawing.Point(60, 185);
             this.createGameBtn.Name = "createGameBtn";
@@ -84,6 +98,7 @@
             // 
             // homeBtn
             // 
+            this.homeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.homeBtn.Image = ((System.Drawing.Image)(resources.GetObject("homeBtn.Image")));
             this.homeBtn.Location = new System.Drawing.Point(50, 76);
             this.homeBtn.Name = "homeBtn";
@@ -156,12 +171,25 @@
             // 
             // CreateGamePanel
             // 
-            this.CreateGamePanel.Controls.Add(this.label2);
             this.CreateGamePanel.Controls.Add(this.label1);
+            this.CreateGamePanel.Controls.Add(this.timeInput);
+            this.CreateGamePanel.Controls.Add(this.vieta);
+            this.CreateGamePanel.Controls.Add(this.placeInput);
+            this.CreateGamePanel.Controls.Add(this.dateInput);
+            this.CreateGamePanel.Controls.Add(this.datums);
+            this.CreateGamePanel.Controls.Add(this.panel1);
+            this.CreateGamePanel.Controls.Add(this.nLabel4);
+            this.CreateGamePanel.Controls.Add(this.nLabel3);
+            this.CreateGamePanel.Controls.Add(this.reffereTwo);
+            this.CreateGamePanel.Controls.Add(this.reffereOne);
+            this.CreateGamePanel.Controls.Add(this.tiesniesi);
+            this.CreateGamePanel.Controls.Add(this.hrSecond);
+            this.CreateGamePanel.Controls.Add(this.nLabel2);
+            this.CreateGamePanel.Controls.Add(this.nLabel1);
             this.CreateGamePanel.Controls.Add(this.selectedTeamTwo);
             this.CreateGamePanel.Controls.Add(this.selectedTeamOne);
             this.CreateGamePanel.Controls.Add(this.izveletiesKomandas);
-            this.CreateGamePanel.Controls.Add(this.panel1);
+            this.CreateGamePanel.Controls.Add(this.hrFirst);
             this.CreateGamePanel.Controls.Add(this.newTeamInput);
             this.CreateGamePanel.Controls.Add(this.createTeamBtn);
             this.CreateGamePanel.Controls.Add(this.izveidotKomanduLabel);
@@ -170,27 +198,27 @@
             this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
             this.CreateGamePanel.TabIndex = 2;
             // 
-            // label2
+            // nLabel2
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(188, 85);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 20);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "2.";
+            this.nLabel2.AutoSize = true;
+            this.nLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.nLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nLabel2.Location = new System.Drawing.Point(188, 85);
+            this.nLabel2.Name = "nLabel2";
+            this.nLabel2.Size = new System.Drawing.Size(24, 20);
+            this.nLabel2.TabIndex = 8;
+            this.nLabel2.Text = "2.";
             // 
-            // label1
+            // nLabel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(188, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "1.";
+            this.nLabel1.AutoSize = true;
+            this.nLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.nLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nLabel1.Location = new System.Drawing.Point(188, 43);
+            this.nLabel1.Name = "nLabel1";
+            this.nLabel1.Size = new System.Drawing.Size(24, 20);
+            this.nLabel1.TabIndex = 7;
+            this.nLabel1.Text = "1.";
             // 
             // selectedTeamTwo
             // 
@@ -199,7 +227,8 @@
             this.selectedTeamTwo.Location = new System.Drawing.Point(212, 82);
             this.selectedTeamTwo.Name = "selectedTeamTwo";
             this.selectedTeamTwo.Size = new System.Drawing.Size(168, 24);
-            this.selectedTeamTwo.TabIndex = 6;
+            this.selectedTeamTwo.TabIndex = 4;
+            this.selectedTeamTwo.SelectionChangeCommitted += new System.EventHandler(this.SelectTeam);
             // 
             // selectedTeamOne
             // 
@@ -208,7 +237,7 @@
             this.selectedTeamOne.Location = new System.Drawing.Point(212, 40);
             this.selectedTeamOne.Name = "selectedTeamOne";
             this.selectedTeamOne.Size = new System.Drawing.Size(168, 24);
-            this.selectedTeamOne.TabIndex = 5;
+            this.selectedTeamOne.TabIndex = 3;
             this.selectedTeamOne.SelectionChangeCommitted += new System.EventHandler(this.SelectTeam);
             // 
             // izveletiesKomandas
@@ -221,13 +250,13 @@
             this.izveletiesKomandas.TabIndex = 4;
             this.izveletiesKomandas.Text = "Izvēlaties komandas";
             // 
-            // panel1
+            // hrFirst
             // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(185, 5);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2, 110);
-            this.panel1.TabIndex = 3;
+            this.hrFirst.BackColor = System.Drawing.Color.Black;
+            this.hrFirst.Location = new System.Drawing.Point(185, 5);
+            this.hrFirst.Name = "hrFirst";
+            this.hrFirst.Size = new System.Drawing.Size(2, 110);
+            this.hrFirst.TabIndex = 3;
             // 
             // newTeamInput
             // 
@@ -265,6 +294,124 @@
             // teamBindingSource
             // 
             this.teamBindingSource.DataSource = typeof(BS.EntityData.Context.Team);
+            // 
+            // hrSecond
+            // 
+            this.hrSecond.BackColor = System.Drawing.Color.Black;
+            this.hrSecond.Location = new System.Drawing.Point(390, 5);
+            this.hrSecond.Name = "hrSecond";
+            this.hrSecond.Size = new System.Drawing.Size(2, 110);
+            this.hrSecond.TabIndex = 4;
+            // 
+            // tiesniesi
+            // 
+            this.tiesniesi.AutoSize = true;
+            this.tiesniesi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tiesniesi.Location = new System.Drawing.Point(440, 3);
+            this.tiesniesi.Name = "tiesniesi";
+            this.tiesniesi.Size = new System.Drawing.Size(79, 20);
+            this.tiesniesi.TabIndex = 9;
+            this.tiesniesi.Text = "Tiesnieši";
+            // 
+            // reffereOne
+            // 
+            this.reffereOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reffereOne.Location = new System.Drawing.Point(419, 40);
+            this.reffereOne.Name = "reffereOne";
+            this.reffereOne.Size = new System.Drawing.Size(150, 26);
+            this.reffereOne.TabIndex = 5;
+            // 
+            // reffereTwo
+            // 
+            this.reffereTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.reffereTwo.Location = new System.Drawing.Point(419, 79);
+            this.reffereTwo.Name = "reffereTwo";
+            this.reffereTwo.Size = new System.Drawing.Size(150, 26);
+            this.reffereTwo.TabIndex = 6;
+            // 
+            // nLabel3
+            // 
+            this.nLabel3.AutoSize = true;
+            this.nLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.nLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nLabel3.Location = new System.Drawing.Point(393, 44);
+            this.nLabel3.Name = "nLabel3";
+            this.nLabel3.Size = new System.Drawing.Size(24, 20);
+            this.nLabel3.TabIndex = 12;
+            this.nLabel3.Text = "1.";
+            // 
+            // nLabel4
+            // 
+            this.nLabel4.AutoSize = true;
+            this.nLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.nLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nLabel4.Location = new System.Drawing.Point(393, 82);
+            this.nLabel4.Name = "nLabel4";
+            this.nLabel4.Size = new System.Drawing.Size(24, 20);
+            this.nLabel4.TabIndex = 13;
+            this.nLabel4.Text = "2.";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Location = new System.Drawing.Point(575, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(2, 110);
+            this.panel1.TabIndex = 5;
+            // 
+            // datums
+            // 
+            this.datums.AutoSize = true;
+            this.datums.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.datums.Location = new System.Drawing.Point(612, 3);
+            this.datums.Name = "datums";
+            this.datums.Size = new System.Drawing.Size(71, 20);
+            this.datums.TabIndex = 14;
+            this.datums.Text = "Datums";
+            // 
+            // dateInput
+            // 
+            this.dateInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateInput.Location = new System.Drawing.Point(583, 26);
+            this.dateInput.Name = "dateInput";
+            this.dateInput.Size = new System.Drawing.Size(128, 26);
+            this.dateInput.TabIndex = 7;
+            // 
+            // placeInput
+            // 
+            this.placeInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.placeInput.Location = new System.Drawing.Point(583, 79);
+            this.placeInput.Name = "placeInput";
+            this.placeInput.Size = new System.Drawing.Size(195, 26);
+            this.placeInput.TabIndex = 9;
+            // 
+            // vieta
+            // 
+            this.vieta.AutoSize = true;
+            this.vieta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.vieta.Location = new System.Drawing.Point(650, 56);
+            this.vieta.Name = "vieta";
+            this.vieta.Size = new System.Drawing.Size(51, 20);
+            this.vieta.TabIndex = 17;
+            this.vieta.Text = "Vieta";
+            // 
+            // timeInput
+            // 
+            this.timeInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.timeInput.Location = new System.Drawing.Point(717, 26);
+            this.timeInput.Name = "timeInput";
+            this.timeInput.Size = new System.Drawing.Size(61, 26);
+            this.timeInput.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(720, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Laiks";
             // 
             // BasketballStats
             // 
@@ -309,13 +456,26 @@
         private System.Windows.Forms.Label exitLabel;
         private System.Windows.Forms.PictureBox createGameBtn;
         private System.Windows.Forms.PictureBox homeBtn;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label nLabel2;
+        private System.Windows.Forms.Label nLabel1;
         private System.Windows.Forms.ComboBox selectedTeamTwo;
         private System.Windows.Forms.ComboBox selectedTeamOne;
         private System.Windows.Forms.Label izveletiesKomandas;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel hrFirst;
         private System.Windows.Forms.BindingSource teamBindingSource;
+        private System.Windows.Forms.Panel hrSecond;
+        private System.Windows.Forms.Label nLabel4;
+        private System.Windows.Forms.Label nLabel3;
+        private System.Windows.Forms.TextBox reffereTwo;
+        private System.Windows.Forms.TextBox reffereOne;
+        private System.Windows.Forms.Label tiesniesi;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox timeInput;
+        private System.Windows.Forms.Label vieta;
+        private System.Windows.Forms.TextBox placeInput;
+        private System.Windows.Forms.TextBox dateInput;
+        private System.Windows.Forms.Label datums;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

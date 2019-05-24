@@ -5,7 +5,7 @@ namespace BasketballStats.App_Start
 {
     using System;
     using System.Web;
-    using EP.BusinessLogic.Services;
+    using BS.BusinessLogic.Services;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
