@@ -4,6 +4,7 @@ using EntityData.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BasketballStats
@@ -102,6 +103,7 @@ namespace BasketballStats
         {
             messageLabel.Text = string.Empty;
             messageLabel.ForeColor = Color.Red;
+            int number = 0;
 
             if (string.IsNullOrEmpty(nameInput.Text))
                 messageLabel.Text = "Ievadiet spēlētāja vārdu!";
@@ -109,8 +111,26 @@ namespace BasketballStats
             if (string.IsNullOrEmpty(surnameInput.Text))
                 messageLabel.Text = "Ievadiet spēlētāja uzvārdu!";
 
-            if (!int.TryParse(numberInput.Text, out int number))
+            if (string.IsNullOrEmpty(numberInput.Text))
                 messageLabel.Text = "Ievadiet spēlētāja numuru!";
+            else
+            {
+                if (!int.TryParse(numberInput.Text, out number))
+                    messageLabel.Text = "Nepareizs numura formāts!";
+                else
+                {
+                    if (SelectedTeamOne.Name == selectedTeams.Text)
+                    {
+                        if (TeamOneParticipants.Any(a => a.Number == number))
+                            messageLabel.Text = "Šis numurs jau ir aizņemts!";
+                    }
+                    else
+                    {
+                        if (TeamTwoParticipants.Any(a => a.Number == number))
+                            messageLabel.Text = "Šis numurs jau ir aizņemts!";
+                    }
+                }
+            }
 
             if (selectedTeams.Text == string.Empty)
                 messageLabel.Text = "Izvēlaties komandu!";
@@ -122,11 +142,12 @@ namespace BasketballStats
                 if (SelectedTeamOne.Name == selectedTeams.Text)
                 {
                     currentPlayer = _participantService.CreateParticipant(nameInput.Text, surnameInput.Text, number, SelectedTeamOne.Id, ActiveMatch.Id);
+                    TeamOneParticipants.Add(currentPlayer);
                 }
                 else
                 {
                     currentPlayer = _participantService.CreateParticipant(nameInput.Text, surnameInput.Text, number, SelectedTeamTwo.Id, ActiveMatch.Id);
-
+                    TeamTwoParticipants.Add(currentPlayer);
                 }
 
                 selectedTeams.Text = nameInput.Text = surnameInput.Text = numberInput.Text = string.Empty;
