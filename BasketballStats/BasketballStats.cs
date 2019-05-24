@@ -34,6 +34,18 @@ namespace BasketballStats
 
         }
 
+        private void ShowCreateParticipantBlock(bool isShow)
+        {
+            izveidotSpeletaju.Visible = izveidotLabel.Visible = nameInput.Visible = surnameInput.Visible =
+                numberInput.Visible = savePlayerBtn.Visible = selectedTeams.Visible = isShow;
+
+            if (isShow)
+            {
+                selectedTeams.Items.Add(SelectedTeamOne.Name);
+                selectedTeams.Items.Add(SelectedTeamTwo.Name);
+            }
+        }
+
         public void CreateTeam(object sender, EventArgs e)
         {
             var success = _teamService.CreateTeam(newTeamInput.Text);
@@ -79,9 +91,14 @@ namespace BasketballStats
                 SelectedTeamTwo = _teamService.GetTeamByName(clickedItem.SelectedItem.ToString());
                 selectedTeamOne.Items.Remove(item);
             }
+
+            if (SelectedTeamOne.Id != 0 && SelectedTeamTwo.Id != 0)
+                ShowCreateParticipantBlock(true); 
+            else
+                ShowCreateParticipantBlock(false);
         }
 
-        private void SavePlayer(object sender, EventArgs e)
+        public void SavePlayer(object sender, EventArgs e)
         {
             messageLabel.Text = string.Empty;
             messageLabel.ForeColor = Color.Red;

@@ -223,6 +223,7 @@
             this.izveidotSpeletaju.Size = new System.Drawing.Size(150, 20);
             this.izveidotSpeletaju.TabIndex = 26;
             this.izveidotSpeletaju.Text = "Izveidot spēlētāju";
+            this.izveidotSpeletaju.Visible = false;
             // 
             // savePlayerBtn
             // 
@@ -237,10 +238,12 @@
             this.savePlayerBtn.TabIndex = 25;
             this.savePlayerBtn.Text = "OK";
             this.savePlayerBtn.UseVisualStyleBackColor = true;
+            this.savePlayerBtn.Visible = false;
             this.savePlayerBtn.Click += new System.EventHandler(this.SavePlayer);
             // 
             // selectedTeams
             // 
+            this.selectedTeams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selectedTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.selectedTeams.FormattingEnabled = true;
             this.selectedTeams.Location = new System.Drawing.Point(543, 172);
@@ -248,6 +251,7 @@
             this.selectedTeams.Name = "selectedTeams";
             this.selectedTeams.Size = new System.Drawing.Size(168, 26);
             this.selectedTeams.TabIndex = 24;
+            this.selectedTeams.Visible = false;
             // 
             // numberInput
             // 
@@ -256,6 +260,7 @@
             this.numberInput.Name = "numberInput";
             this.numberInput.Size = new System.Drawing.Size(45, 26);
             this.numberInput.TabIndex = 23;
+            this.numberInput.Visible = false;
             // 
             // surnameInput
             // 
@@ -264,6 +269,7 @@
             this.surnameInput.Name = "surnameInput";
             this.surnameInput.Size = new System.Drawing.Size(150, 26);
             this.surnameInput.TabIndex = 22;
+            this.surnameInput.Visible = false;
             // 
             // nameInput
             // 
@@ -272,6 +278,7 @@
             this.nameInput.Name = "nameInput";
             this.nameInput.Size = new System.Drawing.Size(150, 26);
             this.nameInput.TabIndex = 21;
+            this.nameInput.Visible = false;
             // 
             // izveidotLabel
             // 
@@ -282,6 +289,7 @@
             this.izveidotLabel.Size = new System.Drawing.Size(512, 20);
             this.izveidotLabel.TabIndex = 20;
             this.izveidotLabel.Text = "             Vārds                    Uzvārds       Numurs           Komanda";
+            this.izveidotLabel.Visible = false;
             // 
             // panel1
             // 
@@ -433,6 +441,7 @@
             // 
             // selectedTeamTwo
             // 
+            this.selectedTeamTwo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selectedTeamTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.selectedTeamTwo.FormattingEnabled = true;
             this.selectedTeamTwo.Location = new System.Drawing.Point(212, 82);
@@ -444,6 +453,7 @@
             // 
             // selectedTeamOne
             // 
+            this.selectedTeamOne.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selectedTeamOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.selectedTeamOne.FormattingEnabled = true;
             this.selectedTeamOne.Location = new System.Drawing.Point(212, 40);
