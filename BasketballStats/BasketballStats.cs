@@ -38,13 +38,28 @@ namespace BasketballStats
         private void ShowCreateParticipantBlock(bool isShow)
         {
             izveidotSpeletaju.Visible = izveidotLabel.Visible = nameInput.Visible = surnameInput.Visible =
-                numberInput.Visible = savePlayerBtn.Visible = selectedTeams.Visible = isShow;
+                numberInput.Visible = savePlayerBtn.Visible = selectedTeams.Visible = teamOneName.Visible =
+                teamTwoName.Visible = teamTwoRoster.Visible = teamOneRoster.Visible = isShow;
 
             if (isShow)
             {
                 selectedTeams.Items.Add(SelectedTeamOne.Name);
                 selectedTeams.Items.Add(SelectedTeamTwo.Name);
+
+                teamOneName.Text = SelectedTeamOne.Name;
+                teamTwoName.Text = SelectedTeamTwo.Name;
             }
+        }
+
+        private void UpdateRosterLabels()
+        {
+            teamOneRoster.Text = teamTwoRoster.Text = string.Empty;
+
+            foreach (var participant in TeamOneParticipants)
+                teamOneRoster.Text += $"#{participant.Number} {participant.FirstName} {participant.LastName}\n";
+
+            foreach (var participant in TeamTwoParticipants)
+                teamTwoRoster.Text += $"#{participant.Number} {participant.FirstName} {participant.LastName}\n";
         }
 
         public void CreateTeam(object sender, EventArgs e)
@@ -151,7 +166,12 @@ namespace BasketballStats
                 }
 
                 selectedTeams.Text = nameInput.Text = surnameInput.Text = numberInput.Text = string.Empty;
+
+                messageLabel.ForeColor = Color.Green;
+                messageLabel.Text = "Spēlētājs tika izveidots";
+
+                UpdateRosterLabels();
             }
-        }
+        }        
     }
 }
