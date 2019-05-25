@@ -1,5 +1,7 @@
 ﻿using BS.EntityData.Context;
+using BusinessLogic.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BS.BusinessLogic.Services
@@ -35,6 +37,29 @@ namespace BS.BusinessLogic.Services
                 .Include("Participants")
                 .FirstOrDefault(w => w.Id == id);
         }
+
+        public List<BasicModel> GetMatchesForSaving()
+        {
+            var matches = Dbset.Where(w => w.Participants.Count > 0)
+                .OrderByDescending(o => o.Date)
+                .Take(20)
+                .ToList();
+
+            var result = new List<BasicModel>();
+            foreach (var match in matches)
+            {
+                result.Add(new BasicModel
+                {
+                    Name = $"{match.TeamOne.Name} " +
+                    $"{match.Participants.Where(w => w.TeamId == match.TeamOneId).Sum(s => s.Points)} " +
+                    $" : {match.Participants.Where(w => w.TeamId == match.TeamTwoId).Sum(s => s.Points)} " +
+                    $" {match.TeamTwo.Name}",
+                    Id = match.Id
+                });
+            }
+
+            return result;
+        }
     }
 
     public interface IMatchService : IService<Match>
@@ -42,5 +67,6 @@ namespace BS.BusinessLogic.Services
         Match CreateMatch();
         void UpdateMath(Match activeMatch);
         Match GetMath(int id);
+        List<BasicModel> GetMatchesForSaving();
     }
 }

@@ -103,8 +103,9 @@
             this.teamNameTwoManage = new System.Windows.Forms.Label();
             this.teamNameManage = new System.Windows.Forms.Label();
             this.StatisticOfTheGamePanel = new System.Windows.Forms.Panel();
-            this.teamOneStatistic = new System.Windows.Forms.Label();
             this.teamTwoStatistic = new System.Windows.Forms.Label();
+            this.teamOneStatistic = new System.Windows.Forms.Label();
+            this.printStatisticBtn = new System.Windows.Forms.PictureBox();
             this.leftMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).BeginInit();
@@ -117,11 +118,13 @@
             this.HomePanel.SuspendLayout();
             this.ManageGamePanel.SuspendLayout();
             this.StatisticOfTheGamePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.printStatisticBtn)).BeginInit();
             this.SuspendLayout();
             // 
             // leftMenu
             // 
             this.leftMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.leftMenu.Controls.Add(this.printStatisticBtn);
             this.leftMenu.Controls.Add(this.statisticBtn);
             this.leftMenu.Controls.Add(this.leftSmallPanel);
             this.leftMenu.Controls.Add(this.createGameBtn);
@@ -943,6 +946,15 @@
             this.StatisticOfTheGamePanel.Size = new System.Drawing.Size(790, 610);
             this.StatisticOfTheGamePanel.TabIndex = 5;
             // 
+            // teamTwoStatistic
+            // 
+            this.teamTwoStatistic.AutoSize = true;
+            this.teamTwoStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamTwoStatistic.Location = new System.Drawing.Point(7, 270);
+            this.teamTwoStatistic.Name = "teamTwoStatistic";
+            this.teamTwoStatistic.Size = new System.Drawing.Size(0, 25);
+            this.teamTwoStatistic.TabIndex = 1;
+            // 
             // teamOneStatistic
             // 
             this.teamOneStatistic.AutoSize = true;
@@ -952,14 +964,17 @@
             this.teamOneStatistic.Size = new System.Drawing.Size(0, 25);
             this.teamOneStatistic.TabIndex = 0;
             // 
-            // teamTwoStatistic
+            // printStatisticBtn
             // 
-            this.teamTwoStatistic.AutoSize = true;
-            this.teamTwoStatistic.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.teamTwoStatistic.Location = new System.Drawing.Point(7, 270);
-            this.teamTwoStatistic.Name = "teamTwoStatistic";
-            this.teamTwoStatistic.Size = new System.Drawing.Size(0, 25);
-            this.teamTwoStatistic.TabIndex = 1;
+            this.printStatisticBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.printStatisticBtn.Image = ((System.Drawing.Image)(resources.GetObject("printStatisticBtn.Image")));
+            this.printStatisticBtn.Location = new System.Drawing.Point(50, 419);
+            this.printStatisticBtn.Name = "printStatisticBtn";
+            this.printStatisticBtn.Size = new System.Drawing.Size(107, 84);
+            this.printStatisticBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.printStatisticBtn.TabIndex = 5;
+            this.printStatisticBtn.TabStop = false;
+            this.printStatisticBtn.Click += new System.EventHandler(this.GoToPrintStatistic);
             // 
             // BasketballStats
             // 
@@ -995,6 +1010,7 @@
             this.ManageGamePanel.PerformLayout();
             this.StatisticOfTheGamePanel.ResumeLayout(false);
             this.StatisticOfTheGamePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.printStatisticBtn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1076,6 +1092,7 @@
         private System.Windows.Forms.Panel StatisticOfTheGamePanel;
         private System.Windows.Forms.Label teamTwoStatistic;
         private System.Windows.Forms.Label teamOneStatistic;
+        private System.Windows.Forms.PictureBox printStatisticBtn;
     }
 }
 

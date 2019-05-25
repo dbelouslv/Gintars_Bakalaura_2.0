@@ -1,5 +1,6 @@
 ﻿using BS.BusinessLogic.Services;
 using BS.EntityData.Context;
+using BusinessLogic.Model;
 using EntityData.Helpers;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace BasketballStats
         private Match ActiveMatch = new Match();
         private Particapant ActiveParticipant = new Particapant();
         private List<RadioButton> RadioButtons = new List<RadioButton>();
+        private string SelecetedPath = string.Empty;
+        private List<BasicModel> SaveMatches = new List<BasicModel>();
 
         public BasketballStats(ITeamService teamService, IParticapantService participantService, IMatchService matchService)
         {
@@ -769,6 +772,15 @@ namespace BasketballStats
         {
             SetActivePanel(PanelType.StatisticOfGame, "Statistika", 285);
             InitiliazeStatisticOfTheGame(ActiveMatch.Id);
-        }        
+        }
+
+        public void GoToPrintStatistic(object sender, EventArgs e)
+        {
+            SelecetedPath = string.Empty;
+
+            SaveMatches = _matchService.GetMatchesForSaving();
+
+            SetActivePanel(PanelType.SaveStatistic, "Saglabāt statistiku", 400);
+        }
     }
 }
