@@ -288,7 +288,7 @@
             this.CreateGamePanel.Controls.Add(this.izveidotKomanduLabel);
             this.CreateGamePanel.Location = new System.Drawing.Point(230, 70);
             this.CreateGamePanel.Name = "CreateGamePanel";
-            this.CreateGamePanel.Size = new System.Drawing.Size(0, 0);
+            this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
             this.CreateGamePanel.TabIndex = 2;
             // 
             // toManageGameBtn
@@ -695,7 +695,7 @@
             this.HomePanel.Controls.Add(this.label2);
             this.HomePanel.Location = new System.Drawing.Point(230, 70);
             this.HomePanel.Name = "HomePanel";
-            this.HomePanel.Size = new System.Drawing.Size(0, 0);
+            this.HomePanel.Size = new System.Drawing.Size(790, 610);
             this.HomePanel.TabIndex = 3;
             // 
             // label2
@@ -745,7 +745,7 @@
             // 
             this.teamNameTwoManage.AutoSize = true;
             this.teamNameTwoManage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.teamNameTwoManage.Location = new System.Drawing.Point(9, 271);
+            this.teamNameTwoManage.Location = new System.Drawing.Point(9, 270);
             this.teamNameTwoManage.Name = "teamNameTwoManage";
             this.teamNameTwoManage.Size = new System.Drawing.Size(0, 20);
             this.teamNameTwoManage.TabIndex = 1;

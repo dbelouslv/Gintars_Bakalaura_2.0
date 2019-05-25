@@ -20,6 +20,7 @@ namespace BasketballStats
         private List<Particapant> TeamOneParticipants = new List<Particapant>();
         private List<Particapant> TeamTwoParticipants = new List<Particapant>();
         private Match ActiveMatch = new Match();
+        private Particapant ActiveParticipant = new Particapant();
 
         public BasketballStats(ITeamService teamService, IParticapantService participantService, IMatchService matchService)
         {
@@ -42,10 +43,17 @@ namespace BasketballStats
                 case PanelType.CreateGame:
                     Controls.Add(CreateGamePanel);
                     Controls.Remove(HomePanel);
+                    Controls.Remove(ManageGamePanel);
+                    break;
+                case PanelType.StartGame:
+                    Controls.Add(ManageGamePanel);
+                    Controls.Remove(HomePanel);
+                    Controls.Remove(CreateGamePanel);
                     break;
                 default:
                     Controls.Add(HomePanel);
                     Controls.Remove(CreateGamePanel);
+                    Controls.Remove(ManageGamePanel);
                     break;
             }
         }
@@ -121,6 +129,67 @@ namespace BasketballStats
 
             selectedTeamOne.Items.AddRange(teams);
             selectedTeamTwo.Items.AddRange(teams);
+        }
+
+        private void InitializeManagePanel()
+        {
+            teamNameManage.Text = SelectedTeamOne.Name;
+            teamNameTwoManage.Text = SelectedTeamTwo.Name;
+
+            int startY = 70;
+            foreach (var player in TeamOneParticipants)
+            {
+                var radioButton = new RadioButton
+                {
+                    AutoSize = true,
+                    Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)204)),
+                    ForeColor = Color.Black,
+                    Location = new Point(10, startY),
+                    Name = player.Id.ToString(),
+                    Size = new Size(150, 25),
+                    Text = $"#{player.Number} {player.FirstName} {player.LastName}",
+                    UseVisualStyleBackColor = true
+                };
+
+                radioButton.CheckedChanged += new EventHandler(SetActivePlayer);
+                ManageGamePanel.Controls.Add(radioButton);
+                startY += 25;
+            }
+
+            startY = 330;
+            foreach (var player in TeamTwoParticipants)
+            {
+                var radioButton = new RadioButton
+                {
+                    AutoSize = true,
+                    Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)204)),
+                    ForeColor = Color.Black,
+                    Location = new Point(10, startY),
+                    Name = player.Id.ToString(),
+                    Size = new Size(150, 25),
+                    Text = $"#{player.Number} {player.FirstName} {player.LastName}",
+                    UseVisualStyleBackColor = true
+                };
+
+                radioButton.CheckedChanged += new EventHandler(SetActivePlayer);
+                ManageGamePanel.Controls.Add(radioButton);
+                startY += 25;
+            }
+        }
+
+        private void SetActivePlayer(object sender, EventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+
+            if (int.TryParse(radio.Name, out int playerId))
+            {
+                var player = TeamOneParticipants.FirstOrDefault(f => f.Id == playerId);
+
+                if (player == null)
+                    player = TeamTwoParticipants.FirstOrDefault(f => f.Id == playerId);
+
+                ActiveParticipant = player;
+            }
         }
 
         public void CreateTeam(object sender, EventArgs e)
@@ -329,6 +398,7 @@ namespace BasketballStats
                                 {
                                     _matchService.UpdateMath(ActiveMatch);
                                     SetActivePanel(PanelType.StartGame, "Kontrolēt spēli", 170);
+                                    InitializeManagePanel();
                                 }
                                 else
                                     messageLabel.Text = "Komandas sostavā nav spēlētāju!";
@@ -347,7 +417,7 @@ namespace BasketballStats
             }
             else
                 messageLabel.Text = "Izvēlaties komandas!";
-        }
+        }       
 
         public void GoToHome(object sender, EventArgs e)
         {
