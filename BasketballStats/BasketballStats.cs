@@ -982,5 +982,13 @@ namespace BasketballStats
                 }
             }
         }
+
+        public void OnlyLetters(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

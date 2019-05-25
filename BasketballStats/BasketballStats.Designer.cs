@@ -84,6 +84,7 @@
             this.izveidotKomanduLabel = new System.Windows.Forms.Label();
             this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.HomePanel = new System.Windows.Forms.Panel();
+            this.pedejasLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ManageGamePanel = new System.Windows.Forms.Panel();
             this.endGameBtn = new System.Windows.Forms.Button();
@@ -110,7 +111,6 @@
             this.mapeLabel = new System.Windows.Forms.Label();
             this.mapeBtn = new System.Windows.Forms.Button();
             this.selectFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.pedejasLabel = new System.Windows.Forms.Label();
             this.leftMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.printStatisticBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).BeginInit();
@@ -468,6 +468,7 @@
             this.surnameInput.Size = new System.Drawing.Size(150, 26);
             this.surnameInput.TabIndex = 11;
             this.surnameInput.Visible = false;
+            this.surnameInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyLetters);
             // 
             // nameInput
             // 
@@ -477,6 +478,7 @@
             this.nameInput.Size = new System.Drawing.Size(150, 26);
             this.nameInput.TabIndex = 10;
             this.nameInput.Visible = false;
+            this.nameInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyLetters);
             // 
             // izveidotLabel
             // 
@@ -532,6 +534,7 @@
             this.placeInput.Name = "placeInput";
             this.placeInput.Size = new System.Drawing.Size(195, 26);
             this.placeInput.TabIndex = 9;
+            this.placeInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyLetters);
             // 
             // dateInput
             // 
@@ -588,6 +591,7 @@
             this.reffereTwo.Name = "reffereTwo";
             this.reffereTwo.Size = new System.Drawing.Size(150, 26);
             this.reffereTwo.TabIndex = 6;
+            this.reffereTwo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyLetters);
             // 
             // reffereOne
             // 
@@ -596,6 +600,7 @@
             this.reffereOne.Name = "reffereOne";
             this.reffereOne.Size = new System.Drawing.Size(150, 26);
             this.reffereOne.TabIndex = 5;
+            this.reffereOne.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyLetters);
             // 
             // tiesnesi
             // 
@@ -724,6 +729,16 @@
             this.HomePanel.Name = "HomePanel";
             this.HomePanel.Size = new System.Drawing.Size(790, 610);
             this.HomePanel.TabIndex = 3;
+            // 
+            // pedejasLabel
+            // 
+            this.pedejasLabel.AutoSize = true;
+            this.pedejasLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.pedejasLabel.Location = new System.Drawing.Point(15, 75);
+            this.pedejasLabel.Name = "pedejasLabel";
+            this.pedejasLabel.Size = new System.Drawing.Size(316, 17);
+            this.pedejasLabel.TabIndex = 1;
+            this.pedejasLabel.Text = "Spied uz nosaukumu, lai skatītos statistiku";
             // 
             // label2
             // 
@@ -1014,16 +1029,6 @@
             this.mapeBtn.Text = "Izvēlaties mapi";
             this.mapeBtn.UseVisualStyleBackColor = true;
             this.mapeBtn.Click += new System.EventHandler(this.SeleceFolder);
-            // 
-            // pedejasLabel
-            // 
-            this.pedejasLabel.AutoSize = true;
-            this.pedejasLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.pedejasLabel.Location = new System.Drawing.Point(15, 75);
-            this.pedejasLabel.Name = "pedejasLabel";
-            this.pedejasLabel.Size = new System.Drawing.Size(316, 17);
-            this.pedejasLabel.TabIndex = 1;
-            this.pedejasLabel.Text = "Spied uz nosaukumu, lai skatītos statistiku";
             // 
             // BasketballStats
             // 
