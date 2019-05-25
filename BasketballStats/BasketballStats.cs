@@ -38,6 +38,7 @@ namespace BasketballStats
         {
             headerName.Text = header;
             leftSmallPanel.Top = height;
+            messageLabel.Text = string.Empty;
 
             switch (activePanel)
             {
@@ -209,8 +210,11 @@ namespace BasketballStats
 
                     if (currentPlayer != null)
                     {
-                        currentPlayer.Points += point;
-                        _participantService.Update(currentPlayer);
+                        if (point > 0 || point < 0 && (currentPlayer.Points + point >= 0))
+                        {
+                            currentPlayer.Points += point;
+                            _participantService.Update(currentPlayer);
+                        }
                     }
                 }
                 else
@@ -219,8 +223,11 @@ namespace BasketballStats
 
                     if (currentPlayer != null)
                     {
-                        currentPlayer.Points += point;
-                        _participantService.Update(currentPlayer);
+                        if (point > 0 || point < 0 && (currentPlayer.Points + point >= 0))
+                        {
+                            currentPlayer.Points += point;
+                            _participantService.Update(currentPlayer);
+                        }
                     }
                 }
             }
@@ -242,8 +249,8 @@ namespace BasketballStats
                 radiobtn.ForeColor = player.Fouls >= 5 ? Color.Red : Color.Black;
             }
 
-            teamNameManage.Text = $"{SelectedTeamOne.Name} - {TeamOneParticipants.Sum(s => s.Points)} ()";
-            teamNameTwoManage.Text = $"{SelectedTeamTwo.Name} - {TeamTwoParticipants.Sum(s => s.Points)} ()";
+            teamNameManage.Text = $"{SelectedTeamOne.Name} - {TeamOneParticipants.Sum(s => s.Points)} ({TeamOneParticipants.Sum(s => s.REB)} REB, {TeamOneParticipants.Sum(s => s.Missed)} MSD)";
+            teamNameTwoManage.Text = $"{SelectedTeamTwo.Name} - {TeamTwoParticipants.Sum(s => s.Points)} ({TeamTwoParticipants.Sum(s => s.REB)} REB, {TeamTwoParticipants.Sum(s => s.Missed)} MSD)";
         }
 
         public void CreateTeam(object sender, EventArgs e)
