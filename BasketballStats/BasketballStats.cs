@@ -985,7 +985,7 @@ namespace BasketballStats
 
         public void OnlyLetters(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
