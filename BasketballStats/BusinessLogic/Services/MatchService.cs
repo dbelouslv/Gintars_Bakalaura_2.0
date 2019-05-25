@@ -1,5 +1,6 @@
 ﻿using BS.EntityData.Context;
 using System;
+using System.Linq;
 
 namespace BS.BusinessLogic.Services
 {
@@ -25,11 +26,21 @@ namespace BS.BusinessLogic.Services
         {
             Update(activeMatch);
         }
+
+        public Match GetMath(int id)
+        {
+            return DataContext.Matches
+                .Include("TeamOne")
+                .Include("TeamTwo")
+                .Include("Participants")
+                .FirstOrDefault(w => w.Id == id);
+        }
     }
 
     public interface IMatchService : IService<Match>
     {
         Match CreateMatch();
         void UpdateMath(Match activeMatch);
+        Match GetMath(int id);
     }
 }

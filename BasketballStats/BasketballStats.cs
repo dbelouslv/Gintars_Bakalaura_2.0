@@ -67,6 +67,9 @@ namespace BasketballStats
                     Controls.Remove(StatisticOfTheGamePanel);
                     break;
             }
+
+            if (activePanel != PanelType.StatisticOfGame)
+                StatisticOfTheGamePanel.Controls.Clear();
         }
 
         private void ShowCreateParticipantBlock(bool isShow)
@@ -144,12 +147,15 @@ namespace BasketballStats
 
         private void InitializeManagePanel()
         {
+            placeInput.Text = timeInput.Text = reffereOne.Text =
+                reffereTwo.Text = dateInput.Text = string.Empty;
+
             teamNameManage.Text = SelectedTeamOne.Name;
             teamNameTwoManage.Text = SelectedTeamTwo.Name;
 
             RadioButtons.Clear();
 
-            int startY = 70;
+            int startY = 50;
             foreach (var player in TeamOneParticipants)
             {
                 var radioButton = new RadioButton
@@ -171,13 +177,13 @@ namespace BasketballStats
                 startY += 25;
             }
 
-            startY = 330;
+            startY = 310;
             foreach (var player in TeamTwoParticipants)
             {
                 var radioButton = new RadioButton
                 {
                     AutoSize = true,
-                    Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)204)),
+                    Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
                     ForeColor = Color.Black,
                     Location = new Point(10, startY),
                     Name = player.Id.ToString(),
@@ -405,9 +411,11 @@ namespace BasketballStats
         private void InitiliazeStatisticOfTheGame(int id)
         {
             teamOneStatistic.Text = teamTwoStatistic.Text = string.Empty;
+            StatisticOfTheGamePanel.Controls.Add(teamOneStatistic);
+            StatisticOfTheGamePanel.Controls.Add(teamTwoStatistic);
 
-            var match = _matchService.Get(g => g.Id == id);
-            var startY = 50;
+            var match = _matchService.GetMath(id);
+            var startY = 60;
 
             if (match != null)
             {
@@ -432,7 +440,7 @@ namespace BasketballStats
                     startY += 25;
                 }
 
-                startY = 300;
+                startY = 310;
                 foreach (var pt in participants.Where(w => w.TeamId == match.TeamTwoId))
                 {
                     var label = new Label

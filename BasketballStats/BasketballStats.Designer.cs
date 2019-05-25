@@ -292,7 +292,7 @@
             this.CreateGamePanel.Controls.Add(this.izveidotKomanduLabel);
             this.CreateGamePanel.Location = new System.Drawing.Point(230, 70);
             this.CreateGamePanel.Name = "CreateGamePanel";
-            this.CreateGamePanel.Size = new System.Drawing.Size(0, 0);
+            this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
             this.CreateGamePanel.TabIndex = 2;
             // 
             // toManageGameBtn
@@ -699,7 +699,7 @@
             this.HomePanel.Controls.Add(this.label2);
             this.HomePanel.Location = new System.Drawing.Point(230, 70);
             this.HomePanel.Name = "HomePanel";
-            this.HomePanel.Size = new System.Drawing.Size(0, 0);
+            this.HomePanel.Size = new System.Drawing.Size(790, 610);
             this.HomePanel.TabIndex = 3;
             // 
             // label2
@@ -733,7 +733,7 @@
             this.ManageGamePanel.Controls.Add(this.teamNameManage);
             this.ManageGamePanel.Location = new System.Drawing.Point(230, 70);
             this.ManageGamePanel.Name = "ManageGamePanel";
-            this.ManageGamePanel.Size = new System.Drawing.Size(0, 0);
+            this.ManageGamePanel.Size = new System.Drawing.Size(790, 610);
             this.ManageGamePanel.TabIndex = 4;
             // 
             // endGameBtn
