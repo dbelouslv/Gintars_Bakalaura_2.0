@@ -94,7 +94,8 @@ namespace BasketballStats
         {
             izveidotSpeletaju.Visible = izveidotLabel.Visible = nameInput.Visible = surnameInput.Visible =
                 numberInput.Visible = savePlayerBtn.Visible = selectedTeams.Visible = teamOneName.Visible =
-                teamTwoName.Visible = teamTwoRoster.Visible = teamOneRoster.Visible = toManageGameBtn.Visible = isShow;
+                teamTwoName.Visible = teamTwoRoster.Visible = teamOneRoster.Visible = toManageGameBtn.Visible =
+                importBtn.Visible = isShow;
 
             selectedTeams.Items.Clear();
             teamOneName.Text = teamTwoName.Text = string.Empty;
@@ -1013,6 +1014,75 @@ namespace BasketballStats
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        public void ImportParticipants(object sender, EventArgs e)
+        {
+            if (openExcel.ShowDialog() == DialogResult.OK)
+            {
+                var excels = new List<string>() { ".csv" };
+
+                if (excels.Contains(Path.GetExtension(openExcel.FileName)))
+                {
+                    var reader = new StreamReader(openExcel.FileName);
+                    string line = string.Empty;
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        var items = line.Split(';');
+
+                        if (items.Length == 4)
+                        {
+                            var hasErrors = false;
+
+                            if (string.IsNullOrEmpty(items[0]))
+                                hasErrors = true;
+
+                            if (string.IsNullOrEmpty(items[1]))
+                                hasErrors = true;
+
+                            if (string.IsNullOrEmpty(items[2]))
+                                hasErrors = true;
+
+                            if (string.IsNullOrEmpty(items[3]))
+                                hasErrors = true;
+
+                            if (!int.TryParse(items[2], out int number))
+                                hasErrors = true;
+
+                            var teamId = items[3] == SelectedTeamOne.Name
+                                ? SelectedTeamOne.Id
+                                : SelectedTeamTwo.Id;
+
+                            if (teamId == SelectedTeamOne.Id)
+                            {
+                                if (TeamOneParticipants.Any(a => a.Number == number))
+                                    hasErrors = true;
+                            }
+                            else
+                            {
+                                if (TeamTwoParticipants.Any(a => a.Number == number))
+                                    hasErrors = true;
+                            }
+
+                            if (!hasErrors)
+                            {
+                                var currentPlayer = _participantService
+                                    .CreateParticipant(items[0], items[1], number, teamId, ActiveMatch.Id);
+
+                                if (teamId == SelectedTeamOne.Id)
+                                    TeamOneParticipants.Add(currentPlayer);
+                                else
+                                    TeamTwoParticipants.Add(currentPlayer);
+
+                                selectedTeams.Text = nameInput.Text = surnameInput.Text = numberInput.Text = string.Empty;
+
+                                UpdateRosterLabels();
+                            }
+                        }
+                    }
+                }
             }
         }
     }

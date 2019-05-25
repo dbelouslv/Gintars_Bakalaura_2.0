@@ -44,6 +44,7 @@
             this.exitLabel = new System.Windows.Forms.Label();
             this.messageLabel = new System.Windows.Forms.Label();
             this.CreateGamePanel = new System.Windows.Forms.Panel();
+            this.importBtn = new System.Windows.Forms.Button();
             this.toManageGameBtn = new System.Windows.Forms.Button();
             this.removeParticipantBtn = new System.Windows.Forms.Button();
             this.removeParticipant = new System.Windows.Forms.ComboBox();
@@ -111,6 +112,7 @@
             this.mapeLabel = new System.Windows.Forms.Label();
             this.mapeBtn = new System.Windows.Forms.Button();
             this.selectFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.openExcel = new System.Windows.Forms.OpenFileDialog();
             this.leftMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.printStatisticBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).BeginInit();
@@ -274,6 +276,7 @@
             // 
             // CreateGamePanel
             // 
+            this.CreateGamePanel.Controls.Add(this.importBtn);
             this.CreateGamePanel.Controls.Add(this.toManageGameBtn);
             this.CreateGamePanel.Controls.Add(this.removeParticipantBtn);
             this.CreateGamePanel.Controls.Add(this.removeParticipant);
@@ -316,6 +319,21 @@
             this.CreateGamePanel.Name = "CreateGamePanel";
             this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
             this.CreateGamePanel.TabIndex = 2;
+            // 
+            // importBtn
+            // 
+            this.importBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.importBtn.FlatAppearance.BorderSize = 2;
+            this.importBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.importBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.importBtn.ForeColor = System.Drawing.Color.Black;
+            this.importBtn.Location = new System.Drawing.Point(14, 129);
+            this.importBtn.Name = "importBtn";
+            this.importBtn.Size = new System.Drawing.Size(153, 31);
+            this.importBtn.TabIndex = 33;
+            this.importBtn.Text = "Import";
+            this.importBtn.UseVisualStyleBackColor = true;
+            this.importBtn.Click += new System.EventHandler(this.ImportParticipants);
             // 
             // toManageGameBtn
             // 
@@ -1030,6 +1048,10 @@
             this.mapeBtn.UseVisualStyleBackColor = true;
             this.mapeBtn.Click += new System.EventHandler(this.SeleceFolder);
             // 
+            // openExcel
+            // 
+            this.openExcel.FileName = "openFileDialog1";
+            // 
             // BasketballStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1156,6 +1178,8 @@
         private System.Windows.Forms.Button mapeBtn;
         private System.Windows.Forms.FolderBrowserDialog selectFolder;
         private System.Windows.Forms.Label pedejasLabel;
+        private System.Windows.Forms.Button importBtn;
+        private System.Windows.Forms.OpenFileDialog openExcel;
     }
 }
 
