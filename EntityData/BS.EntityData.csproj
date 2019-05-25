@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201905250948234_ParticipantStatistic.Designer.cs">
       <DependentUpon>201905250948234_ParticipantStatistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905251051448_AssistForPlayer.cs" />
+    <Compile Include="Migrations\201905251051448_AssistForPlayer.Designer.cs">
+      <DependentUpon>201905251051448_AssistForPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905250948234_ParticipantStatistic.resx">
       <DependentUpon>201905250948234_ParticipantStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251051448_AssistForPlayer.resx">
+      <DependentUpon>201905251051448_AssistForPlayer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,7 +21,8 @@ namespace BasketballStats
         private List<Particapant> TeamTwoParticipants = new List<Particapant>();
         private Match ActiveMatch = new Match();
         private Particapant ActiveParticipant = new Particapant();
-
+        private List<RadioButton> RadioButtons = new List<RadioButton>();
+            
         public BasketballStats(ITeamService teamService, IParticapantService participantService, IMatchService matchService)
         {
             InitializeComponent();
@@ -136,6 +137,8 @@ namespace BasketballStats
             teamNameManage.Text = SelectedTeamOne.Name;
             teamNameTwoManage.Text = SelectedTeamTwo.Name;
 
+            RadioButtons.Clear();
+
             int startY = 70;
             foreach (var player in TeamOneParticipants)
             {
@@ -149,10 +152,12 @@ namespace BasketballStats
                     Size = new Size(150, 25),
                     Text = $"#{player.Number} {player.FirstName} {player.LastName}",
                     UseVisualStyleBackColor = true
-                };
+                };                
 
                 radioButton.CheckedChanged += new EventHandler(SetActivePlayer);
                 ManageGamePanel.Controls.Add(radioButton);
+                RadioButtons.Add(radioButton);
+
                 startY += 25;
             }
 
@@ -173,6 +178,8 @@ namespace BasketballStats
 
                 radioButton.CheckedChanged += new EventHandler(SetActivePlayer);
                 ManageGamePanel.Controls.Add(radioButton);
+                RadioButtons.Add(radioButton);
+
                 startY += 25;
             }
         }
@@ -217,6 +224,26 @@ namespace BasketballStats
                     }
                 }
             }
+
+            UpdateStatisticOfTheGame();
+        }
+
+        private void UpdateStatisticOfTheGame()
+        {
+            foreach (var radiobtn in RadioButtons)
+            {
+                var allParticipants = new List<Particapant>();
+                allParticipants.AddRange(TeamOneParticipants);
+                allParticipants.AddRange(TeamTwoParticipants);
+
+                var player = allParticipants.FirstOrDefault(f => f.Id == int.Parse(radiobtn.Name));
+
+                radiobtn.Text = $"#{player.Number} {player.FirstName} {player.LastName} ({player.Points} PT, {player.Assisted} AST, {player.Missed} MSD, {player.REB} REB)";
+                radiobtn.ForeColor = player.Fouls >= 5 ? Color.Red : Color.Black;
+            }
+
+            teamNameManage.Text = $"{SelectedTeamOne.Name} - {TeamOneParticipants.Sum(s => s.Points)} ()";
+            teamNameTwoManage.Text = $"{SelectedTeamTwo.Name} - {TeamTwoParticipants.Sum(s => s.Points)} ()";
         }
 
         public void CreateTeam(object sender, EventArgs e)
@@ -464,6 +491,21 @@ namespace BasketballStats
         public void AddOnePoint(object sender, EventArgs e)
         {
             AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, 1);
+        }
+
+        public void RemoveThreePoint(object sender, EventArgs e)
+        {
+            AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, -3);
+        }
+
+        public void RemoveTwoPoint(object sender, EventArgs e)
+        {
+            AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, -2);
+        }
+
+        public void RemoveOnePoint(object sender, EventArgs e)
+        {
+            AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, -1);
         }
     }
 }

@@ -151,7 +151,7 @@
             // 
             this.createGameBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createGameBtn.Image = ((System.Drawing.Image)(resources.GetObject("createGameBtn.Image")));
-            this.createGameBtn.Location = new System.Drawing.Point(60, 185);
+            this.createGameBtn.Location = new System.Drawing.Point(60, 191);
             this.createGameBtn.Name = "createGameBtn";
             this.createGameBtn.Size = new System.Drawing.Size(97, 83);
             this.createGameBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -841,6 +841,7 @@
             this.removeOneBtn.TabIndex = 7;
             this.removeOneBtn.Text = "- PT";
             this.removeOneBtn.UseVisualStyleBackColor = true;
+            this.removeOneBtn.Click += new System.EventHandler(this.RemoveOnePoint);
             // 
             // addOneBtn
             // 
@@ -864,6 +865,7 @@
             this.removeTwoBtn.TabIndex = 5;
             this.removeTwoBtn.Text = "-2 PT";
             this.removeTwoBtn.UseVisualStyleBackColor = true;
+            this.removeTwoBtn.Click += new System.EventHandler(this.RemoveTwoPoint);
             // 
             // addTwoBtn
             // 
@@ -887,6 +889,7 @@
             this.removeThreeBtn.TabIndex = 3;
             this.removeThreeBtn.Text = "-3 PT";
             this.removeThreeBtn.UseVisualStyleBackColor = true;
+            this.removeThreeBtn.Click += new System.EventHandler(this.RemoveThreePoint);
             // 
             // addThreeBtn
             // 
@@ -903,19 +906,19 @@
             // teamNameTwoManage
             // 
             this.teamNameTwoManage.AutoSize = true;
-            this.teamNameTwoManage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamNameTwoManage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.teamNameTwoManage.Location = new System.Drawing.Point(9, 270);
             this.teamNameTwoManage.Name = "teamNameTwoManage";
-            this.teamNameTwoManage.Size = new System.Drawing.Size(0, 20);
+            this.teamNameTwoManage.Size = new System.Drawing.Size(0, 25);
             this.teamNameTwoManage.TabIndex = 1;
             // 
             // teamNameManage
             // 
             this.teamNameManage.AutoSize = true;
-            this.teamNameManage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamNameManage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.teamNameManage.Location = new System.Drawing.Point(9, 6);
             this.teamNameManage.Name = "teamNameManage";
-            this.teamNameManage.Size = new System.Drawing.Size(0, 20);
+            this.teamNameManage.Size = new System.Drawing.Size(0, 25);
             this.teamNameManage.TabIndex = 0;
             // 
             // BasketballStats

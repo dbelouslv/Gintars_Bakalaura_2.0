@@ -25,6 +25,8 @@
 
         public int Missed { get; set; }
 
+        public int Assisted { get; set; }
+
         public int Fouls { get; set; }
     }
 }
