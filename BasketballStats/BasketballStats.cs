@@ -173,6 +173,8 @@ namespace BasketballStats
             ManageGamePanel.Controls.Add(teamNameTwoManage);
             ManageGamePanel.Controls.Add(teamNameManage);
 
+            ActiveParticipant = new Particapant();
+
             var teams = _teamService.GetTeams();
             selectedTeamOne.Items.Clear();
             selectedTeamTwo.Items.Clear();
@@ -438,6 +440,7 @@ namespace BasketballStats
 
                 radiobtn.Text = $"#{player.Number} {player.FirstName} {player.LastName} ({player.Points} PT, {player.Assisted} AST, {player.Missed} MSD, {player.REB} REB)";
                 radiobtn.ForeColor = player.Fouls >= 5 ? Color.Red : Color.Black;
+                radiobtn.Enabled = player.Fouls < 5;
             }
 
             teamNameManage.Text = $"{SelectedTeamOne.Name} - {TeamOneParticipants.Sum(s => s.Points)} ({TeamOneParticipants.Sum(s => s.REB)} REB, {TeamOneParticipants.Sum(s => s.Missed)} MSD)";
