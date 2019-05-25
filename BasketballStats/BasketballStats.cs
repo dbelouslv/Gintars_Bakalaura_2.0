@@ -88,9 +88,6 @@ namespace BasketballStats
                     Controls.Remove(PDFPanel);
                     break;
             }
-
-            if (activePanel != PanelType.StatisticOfGame)
-                StatisticOfTheGamePanel.Controls.Clear();
         }
 
         private void ShowCreateParticipantBlock(bool isShow)
@@ -441,8 +438,8 @@ namespace BasketballStats
             if (match != null)
             {
                 var participants = match.Participants.ToList();
-                teamOneStatistic.Text = match.TeamOne.Name;
-                teamTwoStatistic.Text = match.TeamTwo.Name;
+                teamOneStatistic.Text = match.TeamOne.Name + $" - {match.Participants.Where(w => w.TeamId == match.TeamOneId).Sum(s => s.Points)}";
+                teamTwoStatistic.Text = match.TeamTwo.Name + $" - {match.Participants.Where(w => w.TeamId == match.TeamTwoId).Sum(s => s.Points)}";
 
                 foreach (var pt in participants.Where(w => w.TeamId == match.TeamOneId))
                 {
@@ -626,7 +623,7 @@ namespace BasketballStats
 
             if (int.TryParse(label.Name, out int id))
             {
-                SetActivePanel(PanelType.StatisticOfGame, $"Statistika {label.Text}", 285);
+                SetActivePanel(PanelType.StatisticOfGame, $"{label.Text}", 285);
                 InitiliazeStatisticOfTheGame(id);
             }
         }
@@ -938,6 +935,7 @@ namespace BasketballStats
         public void EndGame(object sender, EventArgs e)
         {
             SetActivePanel(PanelType.StatisticOfGame, "Statistika", 285);
+            StatisticOfTheGamePanel.Controls.Clear();
             InitiliazeStatisticOfTheGame(ActiveMatch.Id);
         }
 
@@ -967,11 +965,17 @@ namespace BasketballStats
 
             if (ActiveMatch.Id != 0 && SelectedTeamOne.Id != 0 && SelectedTeamTwo.Id != 0
                 && TeamOneParticipants.Count > 0 && TeamTwoParticipants.Count > 0)
+            {
+                StatisticOfTheGamePanel.Controls.Clear();
                 InitiliazeStatisticOfTheGame(ActiveMatch.Id);
+            }
             else
             {
-                messageLabel.ForeColor = Color.Red;
-                messageLabel.Text = "Kļūda! Izvēlaties spēli!";
+                if (teamOneStatistic.Text.Length == 0)
+                {
+                    messageLabel.ForeColor = Color.Red;
+                    messageLabel.Text = "Kļūda! Izvēlaties spēli!";
+                }
             }
         }
     }
