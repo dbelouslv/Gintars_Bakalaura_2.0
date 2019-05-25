@@ -742,6 +742,7 @@
             this.endGameBtn.TabIndex = 16;
             this.endGameBtn.Text = "BEIGT";
             this.endGameBtn.UseVisualStyleBackColor = true;
+            this.endGameBtn.Click += new System.EventHandler(this.EndGame);
             // 
             // removeFoulBtn
             // 
@@ -777,6 +778,7 @@
             this.removeRebBtn.TabIndex = 13;
             this.removeRebBtn.Text = "- REB";
             this.removeRebBtn.UseVisualStyleBackColor = true;
+            this.removeRebBtn.Click += new System.EventHandler(this.RemoveOneREB);
             // 
             // addRebBtn
             // 
@@ -788,6 +790,7 @@
             this.addRebBtn.TabIndex = 12;
             this.addRebBtn.Text = "+ REB";
             this.addRebBtn.UseVisualStyleBackColor = true;
+            this.addRebBtn.Click += new System.EventHandler(this.AddOneREB);
             // 
             // removeAssistBtn
             // 
@@ -799,6 +802,7 @@
             this.removeAssistBtn.TabIndex = 11;
             this.removeAssistBtn.Text = "- AST";
             this.removeAssistBtn.UseVisualStyleBackColor = true;
+            this.removeAssistBtn.Click += new System.EventHandler(this.RemoveOneAssist);
             // 
             // addAssistBtn
             // 
@@ -810,6 +814,7 @@
             this.addAssistBtn.TabIndex = 10;
             this.addAssistBtn.Text = "+ AST";
             this.addAssistBtn.UseVisualStyleBackColor = true;
+            this.addAssistBtn.Click += new System.EventHandler(this.AddOneAssist);
             // 
             // removeMissedBtn
             // 
@@ -821,6 +826,7 @@
             this.removeMissedBtn.TabIndex = 9;
             this.removeMissedBtn.Text = "- MSD";
             this.removeMissedBtn.UseVisualStyleBackColor = true;
+            this.removeMissedBtn.Click += new System.EventHandler(this.RemoveOneMissed);
             // 
             // addMissedBtn
             // 
@@ -832,6 +838,7 @@
             this.addMissedBtn.TabIndex = 8;
             this.addMissedBtn.Text = "+ MSD";
             this.addMissedBtn.UseVisualStyleBackColor = true;
+            this.addMissedBtn.Click += new System.EventHandler(this.AddOneMissed);
             // 
             // removeOneBtn
             // 

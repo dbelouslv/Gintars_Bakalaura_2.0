@@ -52,6 +52,12 @@ namespace BasketballStats
                     Controls.Remove(HomePanel);
                     Controls.Remove(CreateGamePanel);
                     break;
+                case PanelType.StatisticOfGame:
+                    Controls.Add(ManageGamePanel);
+                    Controls.Remove(HomePanel);
+                    Controls.Remove(CreateGamePanel);
+                    Controls.Remove(ManageGamePanel);
+                    break;
                 default:
                     Controls.Add(HomePanel);
                     Controls.Remove(CreateGamePanel);
@@ -235,7 +241,7 @@ namespace BasketballStats
             UpdateStatisticOfTheGame();
         }
 
-        private void AddFoulBtn(int id, int teamId, int foul)
+        private void AddFoul(int id, int teamId, int foul)
         {
             if (id != 0)
             {
@@ -270,6 +276,111 @@ namespace BasketballStats
             UpdateStatisticOfTheGame();
         }
 
+        private void AddMissed(int id, int teamId, int missed)
+        {
+            if (id != 0)
+            {
+                if (teamId == SelectedTeamOne.Id)
+                {
+                    var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        if (missed > 0 || missed < 0 && (currentPlayer.Missed + missed >= 0))
+                        {
+                            currentPlayer.Missed += missed;
+                            _participantService.Update(currentPlayer);
+                        }
+                    }
+                }
+                else
+                {
+                    var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        if (missed > 0 || missed < 0 && (currentPlayer.Missed + missed >= 0))
+                        {
+                            currentPlayer.Missed += missed;
+                            _participantService.Update(currentPlayer);
+                        }
+                    }
+                }
+            }
+
+            UpdateStatisticOfTheGame();
+        }
+
+        private void AddAssist(int id, int teamId, int assist)
+        {
+            if (id != 0)
+            {
+                if (teamId == SelectedTeamOne.Id)
+                {
+                    var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        if (assist > 0 || assist < 0 && (currentPlayer.Assisted + assist >= 0))
+                        {
+                            currentPlayer.Assisted += assist;
+                            _participantService.Update(currentPlayer);
+                        }
+                    }
+                }
+                else
+                {
+                    var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        if (assist > 0 || assist < 0 && (currentPlayer.Assisted + assist >= 0))
+                        {
+                            currentPlayer.Assisted += assist;
+                            _participantService.Update(currentPlayer);
+                        }
+                    }
+                }
+            }
+
+            UpdateStatisticOfTheGame();
+        }
+
+        private void AddREB(int id, int teamId, int reb)
+        {
+            if (id != 0)
+            {
+                if (teamId == SelectedTeamOne.Id)
+                {
+                    var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        if (reb > 0 || reb < 0 && (currentPlayer.REB + reb >= 0))
+                        {
+                            currentPlayer.REB += reb;
+                            _participantService.Update(currentPlayer);
+                        }
+                    }
+                }
+                else
+                {
+                    var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        if (reb > 0 || reb < 0 && (currentPlayer.REB + reb >= 0))
+                        {
+                            currentPlayer.REB += reb;
+                            _participantService.Update(currentPlayer);
+                        }
+                    }
+                }
+            }
+
+            UpdateStatisticOfTheGame();
+        }
+
         private void UpdateStatisticOfTheGame()
         {
             foreach (var radiobtn in RadioButtons)
@@ -286,6 +397,11 @@ namespace BasketballStats
 
             teamNameManage.Text = $"{SelectedTeamOne.Name} - {TeamOneParticipants.Sum(s => s.Points)} ({TeamOneParticipants.Sum(s => s.REB)} REB, {TeamOneParticipants.Sum(s => s.Missed)} MSD)";
             teamNameTwoManage.Text = $"{SelectedTeamTwo.Name} - {TeamTwoParticipants.Sum(s => s.Points)} ({TeamTwoParticipants.Sum(s => s.REB)} REB, {TeamTwoParticipants.Sum(s => s.Missed)} MSD)";
+        }
+
+        private void InitiliazeStatisticOfTheGame(int id)
+        {
+
         }
 
         public void CreateTeam(object sender, EventArgs e)
@@ -310,7 +426,7 @@ namespace BasketballStats
 
         public void CreateNewGame(object sender, EventArgs e)
         {
-            SetActivePanel(PanelType.CreateGame, "Izveidot Spēli", 170);
+            SetActivePanel(PanelType.CreateGame, "Izveidot Spēli", 185);
 
             ActiveMatch = _matchService.CreateMatch();
 
@@ -493,7 +609,7 @@ namespace BasketballStats
                                 if (TeamOneParticipants.Count > 0 && TeamTwoParticipants.Count > 0)
                                 {
                                     _matchService.UpdateMath(ActiveMatch);
-                                    SetActivePanel(PanelType.StartGame, "Kontrolēt spēli", 170);
+                                    SetActivePanel(PanelType.StartGame, "Kontrolēt spēli", 185);
                                     InitializeManagePanel();
                                 }
                                 else
@@ -552,12 +668,48 @@ namespace BasketballStats
 
         public void AddOneFoul(object sender, EventArgs e)
         {
-            AddFoulBtn(ActiveParticipant.Id, ActiveParticipant.TeamId, 1);
+            AddFoul(ActiveParticipant.Id, ActiveParticipant.TeamId, 1);
         }       
 
         public void RemoveOneFoul(object sender, EventArgs e)
         {
-            AddFoulBtn(ActiveParticipant.Id, ActiveParticipant.TeamId, -1);
+            AddFoul(ActiveParticipant.Id, ActiveParticipant.TeamId, -1);
         }
+
+        public void AddOneMissed(object sender, EventArgs e)
+        {
+            AddMissed(ActiveParticipant.Id, ActiveParticipant.TeamId, 1);
+        }
+
+        public void RemoveOneMissed(object sender, EventArgs e)
+        {
+            AddMissed(ActiveParticipant.Id, ActiveParticipant.TeamId, -1);
+        }
+
+        public void AddOneAssist(object sender, EventArgs e)
+        {
+            AddAssist(ActiveParticipant.Id, ActiveParticipant.TeamId, 1);
+        }
+
+        public void RemoveOneAssist(object sender, EventArgs e)
+        {
+            AddAssist(ActiveParticipant.Id, ActiveParticipant.TeamId, -1);
+        }
+
+        public void AddOneREB(object sender, EventArgs e)
+        {
+            AddREB(ActiveParticipant.Id, ActiveParticipant.TeamId, 1);
+        }       
+
+        public void RemoveOneREB(object sender, EventArgs e)
+        {
+            AddREB(ActiveParticipant.Id, ActiveParticipant.TeamId, -1);
+        }
+
+        public void EndGame(object sender, EventArgs e)
+        {
+            SetActivePanel(PanelType.StatisticOfGame, "Statistika", 285);
+            InitiliazeStatisticOfTheGame(ActiveMatch.Id);
+        }        
     }
 }
