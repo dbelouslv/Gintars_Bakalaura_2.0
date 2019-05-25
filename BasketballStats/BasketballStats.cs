@@ -37,8 +37,12 @@ namespace BasketballStats
             _participantService = participantService;
             _matchService = matchService;
 
+            SaveMatches = _matchService.GetMatchesForSaving();
+
+            InitiliazeHomeStatistic();
+
             SetActivePanel(PanelType.Home, "Galvenā", 70);
-        }
+        }        
 
         private void SetActivePanel(PanelType activePanel, string header, int height)
         {
@@ -588,6 +592,45 @@ namespace BasketballStats
             }
         }
 
+        private void InitiliazeHomeStatistic()
+        {
+            HomePanel.Controls.Clear();
+            HomePanel.Controls.Add(label2);
+            HomePanel.Controls.Add(pedejasLabel);
+
+            int startY = 120;
+            foreach (var match in SaveMatches)
+            {
+                var label = new Label
+                {
+                    AutoSize = true,
+                    Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, ((byte)204)),
+                    ForeColor = Color.Black,
+                    Location = new Point(15, startY),
+                    Name = match.Id.ToString(),
+                    Size = new Size(300, 25),
+                    Text = match.Name,
+                    Cursor = Cursors.Hand
+                };
+
+                label.Click += new EventHandler(ShowStatistic);
+                HomePanel.Controls.Add(label);
+
+                startY += 30;
+            }
+        }
+
+        public void ShowStatistic(object sender, EventArgs e)
+        {
+            var label = (Label)sender;
+
+            if (int.TryParse(label.Name, out int id))
+            {
+                SetActivePanel(PanelType.StatisticOfGame, $"Statistika {label.Text}", 285);
+                InitiliazeStatisticOfTheGame(id);
+            }
+        }
+
         public void CreateTeam(object sender, EventArgs e)
         {
             var success = _teamService.CreateTeam(newTeamInput.Text);
@@ -817,6 +860,8 @@ namespace BasketballStats
 
         public void GoToHome(object sender, EventArgs e)
         {
+            SaveMatches = _matchService.GetMatchesForSaving();
+
             SetActivePanel(PanelType.Home, "Galvenā", 70);
         }
 
