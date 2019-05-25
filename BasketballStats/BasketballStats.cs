@@ -46,14 +46,16 @@ namespace BasketballStats
                     Controls.Add(CreateGamePanel);
                     Controls.Remove(HomePanel);
                     Controls.Remove(ManageGamePanel);
+                    Controls.Remove(StatisticOfTheGamePanel);
                     break;
                 case PanelType.StartGame:
                     Controls.Add(ManageGamePanel);
                     Controls.Remove(HomePanel);
                     Controls.Remove(CreateGamePanel);
+                    Controls.Remove(StatisticOfTheGamePanel);
                     break;
                 case PanelType.StatisticOfGame:
-                    Controls.Add(ManageGamePanel);
+                    Controls.Add(StatisticOfTheGamePanel);
                     Controls.Remove(HomePanel);
                     Controls.Remove(CreateGamePanel);
                     Controls.Remove(ManageGamePanel);
@@ -62,6 +64,7 @@ namespace BasketballStats
                     Controls.Add(HomePanel);
                     Controls.Remove(CreateGamePanel);
                     Controls.Remove(ManageGamePanel);
+                    Controls.Remove(StatisticOfTheGamePanel);
                     break;
             }
         }
@@ -401,6 +404,54 @@ namespace BasketballStats
 
         private void InitiliazeStatisticOfTheGame(int id)
         {
+            teamOneStatistic.Text = teamTwoStatistic.Text = string.Empty;
+
+            var match = _matchService.Get(g => g.Id == id);
+            var startY = 50;
+
+            if (match != null)
+            {
+                var participants = match.Participants.ToList();
+                teamOneStatistic.Text = match.TeamOne.Name;
+                teamTwoStatistic.Text = match.TeamTwo.Name;
+
+                foreach (var pt in participants.Where(w => w.TeamId == match.TeamOneId))
+                {
+                    var label = new Label
+                    {
+                        AutoSize = true,
+                        Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                        ForeColor = Color.Black,
+                        Location = new Point(10, startY),
+                        Name = pt.Id.ToString(),
+                        Size = new Size(200, 25),
+                        Text = $"#{pt.Number} {pt.FirstName} {pt.LastName} - {pt.Points} Points ({pt.Missed} missed shots - {pt.Assisted} assists - {pt.REB} rebounds - {pt.Fouls} fouls)"
+                    };
+
+                    StatisticOfTheGamePanel.Controls.Add(label);
+                    startY += 25;
+                }
+
+                startY = 300;
+                foreach (var pt in participants.Where(w => w.TeamId == match.TeamTwoId))
+                {
+                    var label = new Label
+                    {
+                        AutoSize = true,
+                        Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                        ForeColor = Color.Black,
+                        Location = new Point(10, startY),
+                        Name = pt.Id.ToString(),
+                        Size = new Size(200, 25),
+                        Text = $"#{pt.Number} {pt.FirstName} {pt.LastName} - {pt.Points} Points ({pt.Missed} missed shots - {pt.Assisted} assists - {pt.REB} rebounds - {pt.Fouls} fouls)"
+                    };
+
+                    StatisticOfTheGamePanel.Controls.Add(label);
+                    startY += 25;
+                }
+            }
+            else
+                messageLabel.Text = "Spēle neeksistē";
 
         }
 
