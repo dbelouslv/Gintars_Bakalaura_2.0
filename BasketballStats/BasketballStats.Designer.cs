@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasketballStats));
             this.leftMenu = new System.Windows.Forms.Panel();
+            this.printStatisticBtn = new System.Windows.Forms.PictureBox();
             this.statisticBtn = new System.Windows.Forms.PictureBox();
             this.leftSmallPanel = new System.Windows.Forms.Panel();
             this.createGameBtn = new System.Windows.Forms.PictureBox();
@@ -105,8 +106,12 @@
             this.StatisticOfTheGamePanel = new System.Windows.Forms.Panel();
             this.teamTwoStatistic = new System.Windows.Forms.Label();
             this.teamOneStatistic = new System.Windows.Forms.Label();
-            this.printStatisticBtn = new System.Windows.Forms.PictureBox();
+            this.PDFPanel = new System.Windows.Forms.Panel();
+            this.mapeLabel = new System.Windows.Forms.Label();
+            this.mapeBtn = new System.Windows.Forms.Button();
+            this.selectFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.leftMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.printStatisticBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeBtn)).BeginInit();
@@ -118,7 +123,7 @@
             this.HomePanel.SuspendLayout();
             this.ManageGamePanel.SuspendLayout();
             this.StatisticOfTheGamePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.printStatisticBtn)).BeginInit();
+            this.PDFPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // leftMenu
@@ -134,6 +139,18 @@
             this.leftMenu.Name = "leftMenu";
             this.leftMenu.Size = new System.Drawing.Size(230, 680);
             this.leftMenu.TabIndex = 0;
+            // 
+            // printStatisticBtn
+            // 
+            this.printStatisticBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.printStatisticBtn.Image = ((System.Drawing.Image)(resources.GetObject("printStatisticBtn.Image")));
+            this.printStatisticBtn.Location = new System.Drawing.Point(50, 419);
+            this.printStatisticBtn.Name = "printStatisticBtn";
+            this.printStatisticBtn.Size = new System.Drawing.Size(107, 84);
+            this.printStatisticBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.printStatisticBtn.TabIndex = 5;
+            this.printStatisticBtn.TabStop = false;
+            this.printStatisticBtn.Click += new System.EventHandler(this.GoToPrintStatistic);
             // 
             // statisticBtn
             // 
@@ -295,7 +312,7 @@
             this.CreateGamePanel.Controls.Add(this.izveidotKomanduLabel);
             this.CreateGamePanel.Location = new System.Drawing.Point(230, 70);
             this.CreateGamePanel.Name = "CreateGamePanel";
-            this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
+            this.CreateGamePanel.Size = new System.Drawing.Size(0, 0);
             this.CreateGamePanel.TabIndex = 2;
             // 
             // toManageGameBtn
@@ -702,7 +719,7 @@
             this.HomePanel.Controls.Add(this.label2);
             this.HomePanel.Location = new System.Drawing.Point(230, 70);
             this.HomePanel.Name = "HomePanel";
-            this.HomePanel.Size = new System.Drawing.Size(790, 610);
+            this.HomePanel.Size = new System.Drawing.Size(0, 0);
             this.HomePanel.TabIndex = 3;
             // 
             // label2
@@ -736,7 +753,7 @@
             this.ManageGamePanel.Controls.Add(this.teamNameManage);
             this.ManageGamePanel.Location = new System.Drawing.Point(230, 70);
             this.ManageGamePanel.Name = "ManageGamePanel";
-            this.ManageGamePanel.Size = new System.Drawing.Size(790, 610);
+            this.ManageGamePanel.Size = new System.Drawing.Size(0, 0);
             this.ManageGamePanel.TabIndex = 4;
             // 
             // endGameBtn
@@ -943,7 +960,7 @@
             this.StatisticOfTheGamePanel.Controls.Add(this.teamOneStatistic);
             this.StatisticOfTheGamePanel.Location = new System.Drawing.Point(230, 70);
             this.StatisticOfTheGamePanel.Name = "StatisticOfTheGamePanel";
-            this.StatisticOfTheGamePanel.Size = new System.Drawing.Size(790, 610);
+            this.StatisticOfTheGamePanel.Size = new System.Drawing.Size(0, 0);
             this.StatisticOfTheGamePanel.TabIndex = 5;
             // 
             // teamTwoStatistic
@@ -964,17 +981,36 @@
             this.teamOneStatistic.Size = new System.Drawing.Size(0, 25);
             this.teamOneStatistic.TabIndex = 0;
             // 
-            // printStatisticBtn
+            // PDFPanel
             // 
-            this.printStatisticBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.printStatisticBtn.Image = ((System.Drawing.Image)(resources.GetObject("printStatisticBtn.Image")));
-            this.printStatisticBtn.Location = new System.Drawing.Point(50, 419);
-            this.printStatisticBtn.Name = "printStatisticBtn";
-            this.printStatisticBtn.Size = new System.Drawing.Size(107, 84);
-            this.printStatisticBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.printStatisticBtn.TabIndex = 5;
-            this.printStatisticBtn.TabStop = false;
-            this.printStatisticBtn.Click += new System.EventHandler(this.GoToPrintStatistic);
+            this.PDFPanel.Controls.Add(this.mapeLabel);
+            this.PDFPanel.Controls.Add(this.mapeBtn);
+            this.PDFPanel.Location = new System.Drawing.Point(230, 70);
+            this.PDFPanel.Name = "PDFPanel";
+            this.PDFPanel.Size = new System.Drawing.Size(790, 610);
+            this.PDFPanel.TabIndex = 6;
+            // 
+            // mapeLabel
+            // 
+            this.mapeLabel.AutoSize = true;
+            this.mapeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.mapeLabel.Location = new System.Drawing.Point(229, 59);
+            this.mapeLabel.Name = "mapeLabel";
+            this.mapeLabel.Size = new System.Drawing.Size(58, 20);
+            this.mapeLabel.TabIndex = 1;
+            this.mapeLabel.Text = "Mape:";
+            // 
+            // mapeBtn
+            // 
+            this.mapeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mapeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.mapeBtn.Location = new System.Drawing.Point(310, 12);
+            this.mapeBtn.Name = "mapeBtn";
+            this.mapeBtn.Size = new System.Drawing.Size(156, 31);
+            this.mapeBtn.TabIndex = 0;
+            this.mapeBtn.Text = "Izvēlaties mapi";
+            this.mapeBtn.UseVisualStyleBackColor = true;
+            this.mapeBtn.Click += new System.EventHandler(this.SeleceFolder);
             // 
             // BasketballStats
             // 
@@ -982,6 +1018,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1020, 680);
+            this.Controls.Add(this.PDFPanel);
             this.Controls.Add(this.StatisticOfTheGamePanel);
             this.Controls.Add(this.ManageGamePanel);
             this.Controls.Add(this.HomePanel);
@@ -994,6 +1031,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BasketballStats";
             this.leftMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.printStatisticBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeBtn)).EndInit();
@@ -1010,7 +1048,8 @@
             this.ManageGamePanel.PerformLayout();
             this.StatisticOfTheGamePanel.ResumeLayout(false);
             this.StatisticOfTheGamePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.printStatisticBtn)).EndInit();
+            this.PDFPanel.ResumeLayout(false);
+            this.PDFPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1093,6 +1132,10 @@
         private System.Windows.Forms.Label teamTwoStatistic;
         private System.Windows.Forms.Label teamOneStatistic;
         private System.Windows.Forms.PictureBox printStatisticBtn;
+        private System.Windows.Forms.Panel PDFPanel;
+        private System.Windows.Forms.Label mapeLabel;
+        private System.Windows.Forms.Button mapeBtn;
+        private System.Windows.Forms.FolderBrowserDialog selectFolder;
     }
 }
 

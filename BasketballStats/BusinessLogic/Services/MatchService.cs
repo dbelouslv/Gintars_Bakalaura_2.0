@@ -29,7 +29,7 @@ namespace BS.BusinessLogic.Services
             Update(activeMatch);
         }
 
-        public Match GetMath(int id)
+        public Match GetMatch(int id)
         {
             return DataContext.Matches
                 .Include("TeamOne")
@@ -40,7 +40,8 @@ namespace BS.BusinessLogic.Services
 
         public List<BasicModel> GetMatchesForSaving()
         {
-            var matches = Dbset.Where(w => w.Participants.Count > 0)
+            var matches = Dbset
+                .Where(w => w.Participants.Count > 0 && w.TeamTwo != null && w.TeamOne != null)
                 .OrderByDescending(o => o.Date)
                 .Take(20)
                 .ToList();
@@ -66,7 +67,7 @@ namespace BS.BusinessLogic.Services
     {
         Match CreateMatch();
         void UpdateMath(Match activeMatch);
-        Match GetMath(int id);
+        Match GetMatch(int id);
         List<BasicModel> GetMatchesForSaving();
     }
 }

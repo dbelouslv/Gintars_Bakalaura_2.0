@@ -2,9 +2,12 @@
 using BS.EntityData.Context;
 using BusinessLogic.Model;
 using EntityData.Helpers;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -23,7 +26,7 @@ namespace BasketballStats
         private Match ActiveMatch = new Match();
         private Particapant ActiveParticipant = new Particapant();
         private List<RadioButton> RadioButtons = new List<RadioButton>();
-        private string SelecetedPath = string.Empty;
+        private string SelectedPath = string.Empty;
         private List<BasicModel> SaveMatches = new List<BasicModel>();
 
         public BasketballStats(ITeamService teamService, IParticapantService participantService, IMatchService matchService)
@@ -164,7 +167,7 @@ namespace BasketballStats
                 var radioButton = new RadioButton
                 {
                     AutoSize = true,
-                    Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)204)),
+                    Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)204)),
                     ForeColor = Color.Black,
                     Location = new Point(10, startY),
                     Name = player.Id.ToString(),
@@ -186,7 +189,7 @@ namespace BasketballStats
                 var radioButton = new RadioButton
                 {
                     AutoSize = true,
-                    Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                    Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
                     ForeColor = Color.Black,
                     Location = new Point(10, startY),
                     Name = player.Id.ToString(),
@@ -417,7 +420,7 @@ namespace BasketballStats
             StatisticOfTheGamePanel.Controls.Add(teamOneStatistic);
             StatisticOfTheGamePanel.Controls.Add(teamTwoStatistic);
 
-            var match = _matchService.GetMath(id);
+            var match = _matchService.GetMatch(id);
             var startY = 60;
 
             if (match != null)
@@ -431,7 +434,7 @@ namespace BasketballStats
                     var label = new Label
                     {
                         AutoSize = true,
-                        Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                        Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
                         ForeColor = Color.Black,
                         Location = new Point(10, startY),
                         Name = pt.Id.ToString(),
@@ -449,7 +452,7 @@ namespace BasketballStats
                     var label = new Label
                     {
                         AutoSize = true,
-                        Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
+                        Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
                         ForeColor = Color.Black,
                         Location = new Point(10, startY),
                         Name = pt.Id.ToString(),
@@ -463,7 +466,93 @@ namespace BasketballStats
             }
             else
                 messageLabel.Text = "Spēle neeksistē";
+        }
 
+        private void InitiliazeSaveMathces()
+        {
+            PDFPanel.Controls.Clear();
+            PDFPanel.Controls.Add(mapeLabel);
+            PDFPanel.Controls.Add(mapeBtn);
+
+            int startY = 50;
+            foreach (var match in SaveMatches)
+            {
+                var label = new Label
+                {
+                    AutoSize = true,
+                    Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)204)),
+                    ForeColor = Color.Black,
+                    Location = new Point(400, startY),
+                    Name = match.Id.ToString(),
+                    Size = new Size(300, 25),
+                    Text = match.Name
+                };
+
+                label.Click += new EventHandler(SavePdf);
+                PDFPanel.Controls.Add(label);
+
+                startY += 25;
+            }
+        }
+
+        private void SavePdf(object sender, EventArgs e)
+        {
+            var label = (Label)sender;
+
+            if (int.TryParse(label.Name, out int matchId))
+            {
+                var match = _matchService.GetMatch(matchId);
+
+                if (match != null)
+                {                   
+                    var path = SelectedPath + $"//{label.Text.Replace(' ','_')}.pdf";
+                    var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
+                    var doc = new Document();
+                    var writer = PdfWriter.GetInstance(doc, fs);
+
+                    var teamOnePoints = match.Participants.Where(w => w.Team.Id == match.TeamOneId).Sum(s => s.Points);
+                    var teamTwoPoints = match.Participants.Where(w => w.Team.Id == match.TeamTwoId).Sum(s => s.Points);
+
+                    var rosterOfFirstTeam = match.Participants.Where(w => w.Team.Id == match.TeamOneId).OrderByDescending(o => o.Points).ToList();
+                    var rosterOfSecondTeam = match.Participants.Where(w => w.Team.Id == match.TeamTwoId).OrderByDescending(o => o.Points).ToList();
+
+                    doc.Open();
+
+                    doc.Add(new Paragraph($"Datums: { match.Date.Value.ToShortDateString() }"));
+                    doc.Add(new Paragraph($"Laiks: { match.Date.Value.ToShortTimeString() }"));
+                    doc.Add(new Paragraph($"Vieta: { match.Place }"));                    
+                    doc.Add(new Paragraph($"Tiesneši: { match.ReffereOne } un { match.ReffereTwo }"));
+
+                    var beforeTop = new Paragraph($"{match.TeamOne.Name} - {teamOnePoints}", new iTextSharp.text.Font { Size = 20 })
+                    {
+                        SpacingBefore = 50,
+                        SpacingAfter = 15
+                    };
+                    doc.Add(beforeTop);
+
+                    foreach (var player in rosterOfFirstTeam)
+                        doc.Add(new Paragraph($"#{player.Number} {player.FirstName} {player.LastName} - {player.Points} Points ({player.Missed} missed shots - {player.Assisted} assists - {player.REB} rebounds - {player.Fouls} fouls)", new iTextSharp.text.Font { Size = 12 }));
+
+                    beforeTop = new Paragraph($"{match.TeamTwo.Name} - {teamTwoPoints}", new iTextSharp.text.Font { Size = 20 })
+                    {
+                        SpacingBefore = 15,
+                        SpacingAfter = 15
+                    };
+                    doc.Add(beforeTop);
+
+                    foreach (var player in rosterOfSecondTeam)
+                        doc.Add(new Paragraph($"#{player.Number} {player.FirstName} {player.LastName} - {player.Points} Points ({player.Missed} missed shots - {player.Assisted} assists - {player.REB} rebounds - {player.Fouls} fouls)", new iTextSharp.text.Font { Size = 12 }));
+
+                    doc.Close();
+                    writer.Close();
+                    fs.Close();
+
+                    messageLabel.ForeColor = Color.Green;
+                    messageLabel.Text = "Statistika tika saglabāta";
+                }
+                else
+                    messageLabel.Text = "Spēle neeksistē";
+            }
         }
 
         public void CreateTeam(object sender, EventArgs e)
@@ -776,11 +865,22 @@ namespace BasketballStats
 
         public void GoToPrintStatistic(object sender, EventArgs e)
         {
-            SelecetedPath = string.Empty;
+            SelectedPath = string.Empty;
 
             SaveMatches = _matchService.GetMatchesForSaving();
 
             SetActivePanel(PanelType.SaveStatistic, "Saglabāt statistiku", 400);
+
+            InitiliazeSaveMathces();
+        }       
+
+        public void SeleceFolder(object sender, EventArgs e)
+        {
+            if (selectFolder.ShowDialog() == DialogResult.OK)
+            {
+                SelectedPath = selectFolder.SelectedPath;
+                mapeLabel.Text = SelectedPath;
+            }
         }
     }
 }
