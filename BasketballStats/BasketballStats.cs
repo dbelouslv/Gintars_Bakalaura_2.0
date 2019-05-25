@@ -474,29 +474,39 @@ namespace BasketballStats
             PDFPanel.Controls.Add(mapeLabel);
             PDFPanel.Controls.Add(mapeBtn);
 
-            int startY = 50;
+            int startY = 120;
             foreach (var match in SaveMatches)
             {
                 var label = new Label
                 {
                     AutoSize = true,
-                    Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)204)),
+                    Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, ((byte)204)),
                     ForeColor = Color.Black,
-                    Location = new Point(400, startY),
+                    Location = new Point(230, startY),
                     Name = match.Id.ToString(),
                     Size = new Size(300, 25),
-                    Text = match.Name
+                    Text = match.Name,
+                    Cursor = Cursors.Hand
                 };
 
                 label.Click += new EventHandler(SavePdf);
                 PDFPanel.Controls.Add(label);
 
-                startY += 25;
+                startY += 30;
             }
         }
 
         private void SavePdf(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(SelectedPath))
+            {
+                messageLabel.ForeColor = Color.Red;
+                messageLabel.Text = "Izvēlaties mapi!";
+                return;
+            }
+
+            messageLabel.Text = string.Empty;
+
             var label = (Label)sender;
 
             if (int.TryParse(label.Name, out int matchId))
@@ -505,7 +515,7 @@ namespace BasketballStats
 
                 if (match != null)
                 {                   
-                    var path = SelectedPath + $"//{label.Text.Replace(' ','_')}.pdf";
+                    var path = SelectedPath + $"\\{label.Text.Replace(' ','_').Replace(':','-')}.pdf";
                     var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
                     var doc = new Document();
                     var writer = PdfWriter.GetInstance(doc, fs);
@@ -548,7 +558,7 @@ namespace BasketballStats
                     fs.Close();
 
                     messageLabel.ForeColor = Color.Green;
-                    messageLabel.Text = "Statistika tika saglabāta";
+                    messageLabel.Text = $"Statistika spēli {label.Text} tika saglabāta";
                 }
                 else
                     messageLabel.Text = "Spēle neeksistē";
