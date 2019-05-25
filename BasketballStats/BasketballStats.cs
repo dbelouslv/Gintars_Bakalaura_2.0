@@ -192,6 +192,33 @@ namespace BasketballStats
             }
         }
 
+        private void AddPoint(int id, int teamId, int point)
+        {
+            if (id != 0)
+            {
+                if (teamId == SelectedTeamOne.Id)
+                {
+                    var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        currentPlayer.Points += point;
+                        _participantService.Update(currentPlayer);
+                    }
+                }
+                else
+                {
+                    var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        currentPlayer.Points += point;
+                        _participantService.Update(currentPlayer);
+                    }
+                }
+            }
+        }
+
         public void CreateTeam(object sender, EventArgs e)
         {
             var success = _teamService.CreateTeam(newTeamInput.Text);
@@ -422,6 +449,21 @@ namespace BasketballStats
         public void GoToHome(object sender, EventArgs e)
         {
             SetActivePanel(PanelType.Home, "Galvenā", 70);
+        }
+
+        public void AddThreePoint(object sender, EventArgs e)
+        {
+            AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, 3);
+        }        
+
+        public void AddTwoPoint(object sender, EventArgs e)
+        {
+            AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, 2);
+        }
+
+        public void AddOnePoint(object sender, EventArgs e)
+        {
+            AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, 1);
         }
     }
 }

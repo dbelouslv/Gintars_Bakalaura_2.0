@@ -18,5 +18,13 @@
 
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
+
+        public int Points { get; set; }
+
+        public int REB { get; set; }
+
+        public int Missed { get; set; }
+
+        public int Fouls { get; set; }
     }
 }
