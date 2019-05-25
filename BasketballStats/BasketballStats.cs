@@ -553,6 +553,18 @@ namespace BasketballStats
                     foreach (var player in rosterOfSecondTeam)
                         doc.Add(new Paragraph($"#{player.Number} {player.FirstName} {player.LastName} - {player.Points} Points ({player.Missed} missed shots - {player.Assisted} assists - {player.REB} rebounds - {player.Fouls} fouls)", new iTextSharp.text.Font { Size = 12 }));
 
+                    beforeTop = new Paragraph($"{match.ReffereOne} _____________________", new iTextSharp.text.Font { Size = 12 })
+                    {
+                        SpacingBefore = 150,
+                    };
+                    doc.Add(beforeTop);
+
+                    beforeTop = new Paragraph($"{match.ReffereTwo} _____________________", new iTextSharp.text.Font { Size = 12 })
+                    {
+                        SpacingBefore = 15,
+                    };
+                    doc.Add(beforeTop);
+
                     doc.Close();
                     writer.Close();
                     fs.Close();
