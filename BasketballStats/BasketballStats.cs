@@ -22,7 +22,7 @@ namespace BasketballStats
         private Match ActiveMatch = new Match();
         private Particapant ActiveParticipant = new Particapant();
         private List<RadioButton> RadioButtons = new List<RadioButton>();
-            
+
         public BasketballStats(ITeamService teamService, IParticapantService participantService, IMatchService matchService)
         {
             InitializeComponent();
@@ -102,7 +102,7 @@ namespace BasketballStats
             allParticipants.AddRange(TeamOneParticipants);
             allParticipants.AddRange(TeamTwoParticipants);
 
-            removeParticipantBtn.Visible = dzestSpeletaju.Visible 
+            removeParticipantBtn.Visible = dzestSpeletaju.Visible
                 = removeParticipant.Visible = allParticipants.Count > 0;
 
             foreach (var participant in allParticipants)
@@ -153,7 +153,7 @@ namespace BasketballStats
                     Size = new Size(150, 25),
                     Text = $"#{player.Number} {player.FirstName} {player.LastName}",
                     UseVisualStyleBackColor = true
-                };                
+                };
 
                 radioButton.CheckedChanged += new EventHandler(SetActivePlayer);
                 ManageGamePanel.Controls.Add(radioButton);
@@ -235,6 +235,41 @@ namespace BasketballStats
             UpdateStatisticOfTheGame();
         }
 
+        private void AddFoulBtn(int id, int teamId, int foul)
+        {
+            if (id != 0)
+            {
+                if (teamId == SelectedTeamOne.Id)
+                {
+                    var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        if (foul > 0 || foul < 0 && (currentPlayer.Fouls + foul >= 0))
+                        {
+                            currentPlayer.Fouls += foul;
+                            _participantService.Update(currentPlayer);
+                        }
+                    }
+                }
+                else
+                {
+                    var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
+
+                    if (currentPlayer != null)
+                    {
+                        if (foul > 0 || foul < 0 && (currentPlayer.Fouls + foul >= 0))
+                        {
+                            currentPlayer.Fouls += foul;
+                            _participantService.Update(currentPlayer);
+                        }
+                    }
+                }
+            }
+
+            UpdateStatisticOfTheGame();
+        }
+
         private void UpdateStatisticOfTheGame()
         {
             foreach (var radiobtn in RadioButtons)
@@ -288,7 +323,7 @@ namespace BasketballStats
             var item = clickedItem.SelectedItem.ToString();
 
             if (clickedItem.Name == "selectedTeamOne")
-            {              
+            {
                 SelectedTeamOne = _teamService.GetTeamByName(item);
                 selectedTeamTwo.Items.Remove(item);
             }
@@ -299,7 +334,7 @@ namespace BasketballStats
             }
 
             if (SelectedTeamOne.Id != 0 && SelectedTeamTwo.Id != 0)
-                ShowCreateParticipantBlock(true); 
+                ShowCreateParticipantBlock(true);
             else
                 ShowCreateParticipantBlock(false);
         }
@@ -378,9 +413,9 @@ namespace BasketballStats
                 messageLabel.ForeColor = Color.Green;
                 messageLabel.Text = "Spēlētājs tika izveidots";
 
-                UpdateRosterLabels();                
+                UpdateRosterLabels();
             }
-        }        
+        }
 
         public void RemoveParticipant(object sender, EventArgs e)
         {
@@ -401,7 +436,7 @@ namespace BasketballStats
                     .FirstOrDefault(f => f.FirstName == firstName && f.LastName == lastName && f.Team.Name == teamName);
 
                 if (currentPlayer != null)
-                {                                     
+                {
                     if (SelectedTeamOne.Name == teamName)
                     {
                         TeamOneParticipants.Remove(currentPlayer);
@@ -478,7 +513,7 @@ namespace BasketballStats
             }
             else
                 messageLabel.Text = "Izvēlaties komandas!";
-        }       
+        }
 
         public void GoToHome(object sender, EventArgs e)
         {
@@ -488,7 +523,7 @@ namespace BasketballStats
         public void AddThreePoint(object sender, EventArgs e)
         {
             AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, 3);
-        }        
+        }
 
         public void AddTwoPoint(object sender, EventArgs e)
         {
@@ -513,6 +548,16 @@ namespace BasketballStats
         public void RemoveOnePoint(object sender, EventArgs e)
         {
             AddPoint(ActiveParticipant.Id, ActiveParticipant.TeamId, -1);
+        }
+
+        public void AddOneFoul(object sender, EventArgs e)
+        {
+            AddFoulBtn(ActiveParticipant.Id, ActiveParticipant.TeamId, 1);
+        }       
+
+        public void RemoveOneFoul(object sender, EventArgs e)
+        {
+            AddFoulBtn(ActiveParticipant.Id, ActiveParticipant.TeamId, -1);
         }
     }
 }

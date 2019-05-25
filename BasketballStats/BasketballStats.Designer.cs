@@ -753,6 +753,7 @@
             this.removeFoulBtn.TabIndex = 15;
             this.removeFoulBtn.Text = "- FOUL";
             this.removeFoulBtn.UseVisualStyleBackColor = true;
+            this.removeFoulBtn.Click += new System.EventHandler(this.RemoveOneFoul);
             // 
             // addFoulBtn
             // 
@@ -764,6 +765,7 @@
             this.addFoulBtn.TabIndex = 14;
             this.addFoulBtn.Text = "+ FOUL";
             this.addFoulBtn.UseVisualStyleBackColor = true;
+            this.addFoulBtn.Click += new System.EventHandler(this.AddOneFoul);
             // 
             // removeRebBtn
             // 
