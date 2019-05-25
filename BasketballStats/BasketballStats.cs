@@ -53,24 +53,35 @@ namespace BasketballStats
                     Controls.Remove(HomePanel);
                     Controls.Remove(ManageGamePanel);
                     Controls.Remove(StatisticOfTheGamePanel);
+                    Controls.Remove(PDFPanel);
                     break;
                 case PanelType.StartGame:
                     Controls.Add(ManageGamePanel);
                     Controls.Remove(HomePanel);
                     Controls.Remove(CreateGamePanel);
                     Controls.Remove(StatisticOfTheGamePanel);
+                    Controls.Remove(PDFPanel);
                     break;
                 case PanelType.StatisticOfGame:
                     Controls.Add(StatisticOfTheGamePanel);
                     Controls.Remove(HomePanel);
                     Controls.Remove(CreateGamePanel);
                     Controls.Remove(ManageGamePanel);
+                    Controls.Remove(PDFPanel);
+                    break;
+                case PanelType.SaveStatistic:
+                    Controls.Add(PDFPanel);
+                    Controls.Remove(HomePanel);
+                    Controls.Remove(CreateGamePanel);
+                    Controls.Remove(ManageGamePanel);
+                    Controls.Remove(StatisticOfTheGamePanel);
                     break;
                 default:
                     Controls.Add(HomePanel);
                     Controls.Remove(CreateGamePanel);
                     Controls.Remove(ManageGamePanel);
                     Controls.Remove(StatisticOfTheGamePanel);
+                    Controls.Remove(PDFPanel);
                     break;
             }
 
