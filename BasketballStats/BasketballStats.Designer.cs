@@ -162,6 +162,7 @@
             this.statisticBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.statisticBtn.TabIndex = 4;
             this.statisticBtn.TabStop = false;
+            this.statisticBtn.Click += new System.EventHandler(this.OpenStatisticPanel);
             // 
             // leftSmallPanel
             // 

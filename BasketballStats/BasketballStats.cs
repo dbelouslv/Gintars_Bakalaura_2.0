@@ -749,7 +749,7 @@ namespace BasketballStats
                     _participantService.RemoveParticipant(currentPlayer.Id);
 
                     messageLabel.ForeColor = Color.Green;
-                    messageLabel.Text = "Spēlētājs tika nodzēst";
+                    messageLabel.Text = "Spēlētājs tika dzēsts";
                     removeParticipant.SelectedItem = string.Empty;
 
                     UpdateRosterLabels();
@@ -913,6 +913,20 @@ namespace BasketballStats
             {
                 SelectedPath = selectFolder.SelectedPath;
                 mapeLabel.Text = SelectedPath;
+            }
+        }
+
+        private void OpenStatisticPanel(object sender, EventArgs e)
+        {
+            SetActivePanel(PanelType.StatisticOfGame, "Statistika", 285);
+
+            if (ActiveMatch.Id != 0 && SelectedTeamOne.Id != 0 && SelectedTeamTwo.Id != 0
+                && TeamOneParticipants.Count > 0 && TeamTwoParticipants.Count > 0)
+                InitiliazeStatisticOfTheGame(ActiveMatch.Id);
+            else
+            {
+                messageLabel.ForeColor = Color.Red;
+                messageLabel.Text = "Kļūda! Izvēlaties spēli!";
             }
         }
     }
