@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasketballStats));
             this.leftMenu = new System.Windows.Forms.Panel();
+            this.statisticBtn = new System.Windows.Forms.PictureBox();
             this.leftSmallPanel = new System.Windows.Forms.Panel();
             this.createGameBtn = new System.Windows.Forms.PictureBox();
             this.homeBtn = new System.Windows.Forms.PictureBox();
@@ -83,8 +84,26 @@
             this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.HomePanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.statisticBtn = new System.Windows.Forms.PictureBox();
+            this.ManageGamePanel = new System.Windows.Forms.Panel();
+            this.teamNameManage = new System.Windows.Forms.Label();
+            this.teamNameTwoManage = new System.Windows.Forms.Label();
+            this.addThreeBtn = new System.Windows.Forms.Button();
+            this.removeThreeBtn = new System.Windows.Forms.Button();
+            this.addTwoBtn = new System.Windows.Forms.Button();
+            this.removeTwoBtn = new System.Windows.Forms.Button();
+            this.addOneBtn = new System.Windows.Forms.Button();
+            this.removeOneBtn = new System.Windows.Forms.Button();
+            this.removeRebBtn = new System.Windows.Forms.Button();
+            this.addRebBtn = new System.Windows.Forms.Button();
+            this.removeAssistBtn = new System.Windows.Forms.Button();
+            this.addAssistBtn = new System.Windows.Forms.Button();
+            this.removeMissedBtn = new System.Windows.Forms.Button();
+            this.addMissedBtn = new System.Windows.Forms.Button();
+            this.removeFoulBtn = new System.Windows.Forms.Button();
+            this.addFoulBtn = new System.Windows.Forms.Button();
+            this.endGameBtn = new System.Windows.Forms.Button();
             this.leftMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeBtn)).BeginInit();
             this.blackTopPanel.SuspendLayout();
@@ -93,7 +112,7 @@
             this.CreateGamePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teamBindingSource)).BeginInit();
             this.HomePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).BeginInit();
+            this.ManageGamePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // leftMenu
@@ -108,6 +127,17 @@
             this.leftMenu.Name = "leftMenu";
             this.leftMenu.Size = new System.Drawing.Size(230, 680);
             this.leftMenu.TabIndex = 0;
+            // 
+            // statisticBtn
+            // 
+            this.statisticBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.statisticBtn.Image = ((System.Drawing.Image)(resources.GetObject("statisticBtn.Image")));
+            this.statisticBtn.Location = new System.Drawing.Point(50, 298);
+            this.statisticBtn.Name = "statisticBtn";
+            this.statisticBtn.Size = new System.Drawing.Size(107, 96);
+            this.statisticBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.statisticBtn.TabIndex = 4;
+            this.statisticBtn.TabStop = false;
             // 
             // leftSmallPanel
             // 
@@ -258,7 +288,7 @@
             this.CreateGamePanel.Controls.Add(this.izveidotKomanduLabel);
             this.CreateGamePanel.Location = new System.Drawing.Point(230, 70);
             this.CreateGamePanel.Name = "CreateGamePanel";
-            this.CreateGamePanel.Size = new System.Drawing.Size(790, 610);
+            this.CreateGamePanel.Size = new System.Drawing.Size(0, 0);
             this.CreateGamePanel.TabIndex = 2;
             // 
             // toManageGameBtn
@@ -665,7 +695,7 @@
             this.HomePanel.Controls.Add(this.label2);
             this.HomePanel.Location = new System.Drawing.Point(230, 70);
             this.HomePanel.Name = "HomePanel";
-            this.HomePanel.Size = new System.Drawing.Size(790, 610);
+            this.HomePanel.Size = new System.Drawing.Size(0, 0);
             this.HomePanel.TabIndex = 3;
             // 
             // label2
@@ -678,16 +708,212 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "GINTARS LAZDA BAKALAURA DARBS";
             // 
-            // statisticBtn
+            // ManageGamePanel
             // 
-            this.statisticBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.statisticBtn.Image = ((System.Drawing.Image)(resources.GetObject("statisticBtn.Image")));
-            this.statisticBtn.Location = new System.Drawing.Point(50, 298);
-            this.statisticBtn.Name = "statisticBtn";
-            this.statisticBtn.Size = new System.Drawing.Size(107, 96);
-            this.statisticBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.statisticBtn.TabIndex = 4;
-            this.statisticBtn.TabStop = false;
+            this.ManageGamePanel.Controls.Add(this.endGameBtn);
+            this.ManageGamePanel.Controls.Add(this.removeFoulBtn);
+            this.ManageGamePanel.Controls.Add(this.addFoulBtn);
+            this.ManageGamePanel.Controls.Add(this.removeRebBtn);
+            this.ManageGamePanel.Controls.Add(this.addRebBtn);
+            this.ManageGamePanel.Controls.Add(this.removeAssistBtn);
+            this.ManageGamePanel.Controls.Add(this.addAssistBtn);
+            this.ManageGamePanel.Controls.Add(this.removeMissedBtn);
+            this.ManageGamePanel.Controls.Add(this.addMissedBtn);
+            this.ManageGamePanel.Controls.Add(this.removeOneBtn);
+            this.ManageGamePanel.Controls.Add(this.addOneBtn);
+            this.ManageGamePanel.Controls.Add(this.removeTwoBtn);
+            this.ManageGamePanel.Controls.Add(this.addTwoBtn);
+            this.ManageGamePanel.Controls.Add(this.removeThreeBtn);
+            this.ManageGamePanel.Controls.Add(this.addThreeBtn);
+            this.ManageGamePanel.Controls.Add(this.teamNameTwoManage);
+            this.ManageGamePanel.Controls.Add(this.teamNameManage);
+            this.ManageGamePanel.Location = new System.Drawing.Point(230, 70);
+            this.ManageGamePanel.Name = "ManageGamePanel";
+            this.ManageGamePanel.Size = new System.Drawing.Size(790, 610);
+            this.ManageGamePanel.TabIndex = 4;
+            // 
+            // teamNameManage
+            // 
+            this.teamNameManage.AutoSize = true;
+            this.teamNameManage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamNameManage.Location = new System.Drawing.Point(9, 6);
+            this.teamNameManage.Name = "teamNameManage";
+            this.teamNameManage.Size = new System.Drawing.Size(0, 20);
+            this.teamNameManage.TabIndex = 0;
+            // 
+            // teamNameTwoManage
+            // 
+            this.teamNameTwoManage.AutoSize = true;
+            this.teamNameTwoManage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.teamNameTwoManage.Location = new System.Drawing.Point(9, 271);
+            this.teamNameTwoManage.Name = "teamNameTwoManage";
+            this.teamNameTwoManage.Size = new System.Drawing.Size(0, 20);
+            this.teamNameTwoManage.TabIndex = 1;
+            // 
+            // addThreeBtn
+            // 
+            this.addThreeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addThreeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addThreeBtn.Location = new System.Drawing.Point(583, 27);
+            this.addThreeBtn.Name = "addThreeBtn";
+            this.addThreeBtn.Size = new System.Drawing.Size(75, 37);
+            this.addThreeBtn.TabIndex = 2;
+            this.addThreeBtn.Text = "+3 PT";
+            this.addThreeBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeThreeBtn
+            // 
+            this.removeThreeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeThreeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeThreeBtn.Location = new System.Drawing.Point(680, 26);
+            this.removeThreeBtn.Name = "removeThreeBtn";
+            this.removeThreeBtn.Size = new System.Drawing.Size(75, 37);
+            this.removeThreeBtn.TabIndex = 3;
+            this.removeThreeBtn.Text = "-3 PT";
+            this.removeThreeBtn.UseVisualStyleBackColor = true;
+            // 
+            // addTwoBtn
+            // 
+            this.addTwoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addTwoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addTwoBtn.Location = new System.Drawing.Point(583, 73);
+            this.addTwoBtn.Name = "addTwoBtn";
+            this.addTwoBtn.Size = new System.Drawing.Size(75, 37);
+            this.addTwoBtn.TabIndex = 4;
+            this.addTwoBtn.Text = "+2 PT";
+            this.addTwoBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeTwoBtn
+            // 
+            this.removeTwoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeTwoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeTwoBtn.Location = new System.Drawing.Point(680, 73);
+            this.removeTwoBtn.Name = "removeTwoBtn";
+            this.removeTwoBtn.Size = new System.Drawing.Size(75, 37);
+            this.removeTwoBtn.TabIndex = 5;
+            this.removeTwoBtn.Text = "-2 PT";
+            this.removeTwoBtn.UseVisualStyleBackColor = true;
+            // 
+            // addOneBtn
+            // 
+            this.addOneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addOneBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addOneBtn.Location = new System.Drawing.Point(583, 121);
+            this.addOneBtn.Name = "addOneBtn";
+            this.addOneBtn.Size = new System.Drawing.Size(75, 37);
+            this.addOneBtn.TabIndex = 6;
+            this.addOneBtn.Text = "+ PT";
+            this.addOneBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeOneBtn
+            // 
+            this.removeOneBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeOneBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeOneBtn.Location = new System.Drawing.Point(680, 121);
+            this.removeOneBtn.Name = "removeOneBtn";
+            this.removeOneBtn.Size = new System.Drawing.Size(75, 37);
+            this.removeOneBtn.TabIndex = 7;
+            this.removeOneBtn.Text = "- PT";
+            this.removeOneBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeRebBtn
+            // 
+            this.removeRebBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeRebBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeRebBtn.Location = new System.Drawing.Point(680, 366);
+            this.removeRebBtn.Name = "removeRebBtn";
+            this.removeRebBtn.Size = new System.Drawing.Size(75, 37);
+            this.removeRebBtn.TabIndex = 13;
+            this.removeRebBtn.Text = "- REB";
+            this.removeRebBtn.UseVisualStyleBackColor = true;
+            // 
+            // addRebBtn
+            // 
+            this.addRebBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addRebBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addRebBtn.Location = new System.Drawing.Point(583, 366);
+            this.addRebBtn.Name = "addRebBtn";
+            this.addRebBtn.Size = new System.Drawing.Size(75, 37);
+            this.addRebBtn.TabIndex = 12;
+            this.addRebBtn.Text = "+ REB";
+            this.addRebBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeAssistBtn
+            // 
+            this.removeAssistBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeAssistBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeAssistBtn.Location = new System.Drawing.Point(680, 318);
+            this.removeAssistBtn.Name = "removeAssistBtn";
+            this.removeAssistBtn.Size = new System.Drawing.Size(75, 37);
+            this.removeAssistBtn.TabIndex = 11;
+            this.removeAssistBtn.Text = "- AST";
+            this.removeAssistBtn.UseVisualStyleBackColor = true;
+            // 
+            // addAssistBtn
+            // 
+            this.addAssistBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addAssistBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addAssistBtn.Location = new System.Drawing.Point(583, 318);
+            this.addAssistBtn.Name = "addAssistBtn";
+            this.addAssistBtn.Size = new System.Drawing.Size(75, 37);
+            this.addAssistBtn.TabIndex = 10;
+            this.addAssistBtn.Text = "+ AST";
+            this.addAssistBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeMissedBtn
+            // 
+            this.removeMissedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeMissedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeMissedBtn.Location = new System.Drawing.Point(680, 271);
+            this.removeMissedBtn.Name = "removeMissedBtn";
+            this.removeMissedBtn.Size = new System.Drawing.Size(75, 37);
+            this.removeMissedBtn.TabIndex = 9;
+            this.removeMissedBtn.Text = "- MSD";
+            this.removeMissedBtn.UseVisualStyleBackColor = true;
+            // 
+            // addMissedBtn
+            // 
+            this.addMissedBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addMissedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addMissedBtn.Location = new System.Drawing.Point(583, 272);
+            this.addMissedBtn.Name = "addMissedBtn";
+            this.addMissedBtn.Size = new System.Drawing.Size(75, 37);
+            this.addMissedBtn.TabIndex = 8;
+            this.addMissedBtn.Text = "+ MSD";
+            this.addMissedBtn.UseVisualStyleBackColor = true;
+            // 
+            // removeFoulBtn
+            // 
+            this.removeFoulBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeFoulBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeFoulBtn.Location = new System.Drawing.Point(680, 201);
+            this.removeFoulBtn.Name = "removeFoulBtn";
+            this.removeFoulBtn.Size = new System.Drawing.Size(75, 37);
+            this.removeFoulBtn.TabIndex = 15;
+            this.removeFoulBtn.Text = "- FOUL";
+            this.removeFoulBtn.UseVisualStyleBackColor = true;
+            // 
+            // addFoulBtn
+            // 
+            this.addFoulBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addFoulBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addFoulBtn.Location = new System.Drawing.Point(583, 202);
+            this.addFoulBtn.Name = "addFoulBtn";
+            this.addFoulBtn.Size = new System.Drawing.Size(75, 37);
+            this.addFoulBtn.TabIndex = 14;
+            this.addFoulBtn.Text = "+ FOUL";
+            this.addFoulBtn.UseVisualStyleBackColor = true;
+            // 
+            // endGameBtn
+            // 
+            this.endGameBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.endGameBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.endGameBtn.Location = new System.Drawing.Point(583, 518);
+            this.endGameBtn.Name = "endGameBtn";
+            this.endGameBtn.Size = new System.Drawing.Size(172, 37);
+            this.endGameBtn.TabIndex = 16;
+            this.endGameBtn.Text = "BEIGT";
+            this.endGameBtn.UseVisualStyleBackColor = true;
             // 
             // BasketballStats
             // 
@@ -695,6 +921,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1020, 680);
+            this.Controls.Add(this.ManageGamePanel);
             this.Controls.Add(this.HomePanel);
             this.Controls.Add(this.CreateGamePanel);
             this.Controls.Add(this.topMenu);
@@ -705,6 +932,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BasketballStats";
             this.leftMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.createGameBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.homeBtn)).EndInit();
             this.blackTopPanel.ResumeLayout(false);
@@ -716,7 +944,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.teamBindingSource)).EndInit();
             this.HomePanel.ResumeLayout(false);
             this.HomePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.statisticBtn)).EndInit();
+            this.ManageGamePanel.ResumeLayout(false);
+            this.ManageGamePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -777,6 +1006,24 @@
         private System.Windows.Forms.Panel HomePanel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox statisticBtn;
+        private System.Windows.Forms.Panel ManageGamePanel;
+        private System.Windows.Forms.Button removeOneBtn;
+        private System.Windows.Forms.Button addOneBtn;
+        private System.Windows.Forms.Button removeTwoBtn;
+        private System.Windows.Forms.Button addTwoBtn;
+        private System.Windows.Forms.Button removeThreeBtn;
+        private System.Windows.Forms.Button addThreeBtn;
+        private System.Windows.Forms.Label teamNameTwoManage;
+        private System.Windows.Forms.Label teamNameManage;
+        private System.Windows.Forms.Button endGameBtn;
+        private System.Windows.Forms.Button removeFoulBtn;
+        private System.Windows.Forms.Button addFoulBtn;
+        private System.Windows.Forms.Button removeRebBtn;
+        private System.Windows.Forms.Button addRebBtn;
+        private System.Windows.Forms.Button removeAssistBtn;
+        private System.Windows.Forms.Button addAssistBtn;
+        private System.Windows.Forms.Button removeMissedBtn;
+        private System.Windows.Forms.Button addMissedBtn;
     }
 }
 
