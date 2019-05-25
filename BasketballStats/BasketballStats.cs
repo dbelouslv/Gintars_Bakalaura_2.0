@@ -824,10 +824,14 @@ namespace BasketballStats
                         {
                             var items = timeInput.Text.Split(':');
 
-                            if (int.TryParse(items[0], out int hours) && int.TryParse(items[1], out int min))
+                            if (int.TryParse(items[0], out int hours))
                             {
                                 date = date.AddHours(hours);
-                                date = date.AddMinutes(min);
+
+                                if (items.Length == 2 && int.TryParse(items[1], out int min))
+                                {
+                                    date = date.AddMinutes(min);
+                                }
 
                                 ActiveMatch.Date = date;
                                 if (TeamOneParticipants.Count > 0 && TeamTwoParticipants.Count > 0)
