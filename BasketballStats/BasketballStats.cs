@@ -154,6 +154,24 @@ namespace BasketballStats
             TeamTwoParticipants = new List<Particapant>();
 
             ShowCreateParticipantBlock(false);
+            ManageGamePanel.Controls.Clear();
+            ManageGamePanel.Controls.Add(endGameBtn);
+            ManageGamePanel.Controls.Add(removeFoulBtn);
+            ManageGamePanel.Controls.Add(addFoulBtn);
+            ManageGamePanel.Controls.Add(removeRebBtn);
+            ManageGamePanel.Controls.Add(addRebBtn);
+            ManageGamePanel.Controls.Add(removeAssistBtn);
+            ManageGamePanel.Controls.Add(addAssistBtn);
+            ManageGamePanel.Controls.Add(removeMissedBtn);
+            ManageGamePanel.Controls.Add(addMissedBtn);
+            ManageGamePanel.Controls.Add(removeOneBtn);
+            ManageGamePanel.Controls.Add(addOneBtn);
+            ManageGamePanel.Controls.Add(removeTwoBtn);
+            ManageGamePanel.Controls.Add(addTwoBtn);
+            ManageGamePanel.Controls.Add(removeThreeBtn);
+            ManageGamePanel.Controls.Add(addThreeBtn);
+            ManageGamePanel.Controls.Add(teamNameTwoManage);
+            ManageGamePanel.Controls.Add(teamNameManage);
 
             var teams = _teamService.GetTeams();
             selectedTeamOne.Items.Clear();
