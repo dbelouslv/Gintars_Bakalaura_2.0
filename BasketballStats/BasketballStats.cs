@@ -772,8 +772,12 @@ namespace BasketballStats
                 var lastName = items[1];
                 var teamName = items[2];
 
+                var teamId = SelectedTeamOne.Name == teamName 
+                    ? SelectedTeamOne.Id 
+                    : SelectedTeamTwo.Id;
+
                 var currentPlayer = allParticipant
-                    .FirstOrDefault(f => f.FirstName == firstName && f.LastName == lastName && f.Team.Name == teamName);
+                    .FirstOrDefault(f => f.FirstName == firstName && f.LastName == lastName && f.TeamId == teamId);
 
                 if (currentPlayer != null)
                 {
