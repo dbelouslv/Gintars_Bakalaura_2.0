@@ -38,20 +38,21 @@ namespace BS.BusinessLogic.Services
                 .FirstOrDefault(w => w.Id == id);
         }
 
-        public List<BasicModel> GetMatchesForSaving()
+        public List<BasicModel> GetMatchesForSaving(DateTime? date = null)
         {
-            var matches = Dbset
-                .Where(w => w.Participants.Count > 0 && w.TeamTwo != null && w.TeamOne != null)
-                .OrderByDescending(o => o.Date)
-                .Take(15)
-                .ToList();
+            var matches = Dbset.Where(w => w.Participants.Count > 0 && w.TeamTwo != null && w.TeamOne != null).ToList();
+
+            if (date.HasValue)
+                matches = matches.Where(w => w.Date == date.Value).ToList();
+
+            matches = matches.OrderByDescending(o => o.Date).Take(15).ToList();
 
             var result = new List<BasicModel>();
             foreach (var match in matches)
             {
                 result.Add(new BasicModel
                 {
-                    Name = $"{match.TeamOne.Name} " +
+                    Name = $"{match.Date.Value.ToShortDateString()}: {match.TeamOne.Name} " +
                     $"{match.Participants.Where(w => w.TeamId == match.TeamOneId).Sum(s => s.Points)} " +
                     $" : {match.Participants.Where(w => w.TeamId == match.TeamTwoId).Sum(s => s.Points)} " +
                     $" {match.TeamTwo.Name}",
@@ -68,6 +69,6 @@ namespace BS.BusinessLogic.Services
         Match CreateMatch();
         void UpdateMath(Match activeMatch);
         Match GetMatch(int id);
-        List<BasicModel> GetMatchesForSaving();
+        List<BasicModel> GetMatchesForSaving(DateTime? date = null);
     }
 }

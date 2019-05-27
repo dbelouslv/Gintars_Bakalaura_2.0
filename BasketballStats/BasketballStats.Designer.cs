@@ -85,6 +85,8 @@
             this.izveidotKomanduLabel = new System.Windows.Forms.Label();
             this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.HomePanel = new System.Windows.Forms.Panel();
+            this.sortDate = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.pedejasLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ManageGamePanel = new System.Windows.Forms.Panel();
@@ -741,12 +743,34 @@
             // 
             // HomePanel
             // 
+            this.HomePanel.Controls.Add(this.sortDate);
+            this.HomePanel.Controls.Add(this.button1);
             this.HomePanel.Controls.Add(this.pedejasLabel);
             this.HomePanel.Controls.Add(this.label2);
             this.HomePanel.Location = new System.Drawing.Point(230, 70);
             this.HomePanel.Name = "HomePanel";
             this.HomePanel.Size = new System.Drawing.Size(790, 610);
             this.HomePanel.TabIndex = 3;
+            // 
+            // sortDate
+            // 
+            this.sortDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sortDate.Location = new System.Drawing.Point(356, 75);
+            this.sortDate.Name = "sortDate";
+            this.sortDate.Size = new System.Drawing.Size(100, 23);
+            this.sortDate.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(467, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(66, 25);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Sort";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.SortByDate);
             // 
             // pedejasLabel
             // 
@@ -1180,6 +1204,8 @@
         private System.Windows.Forms.Label pedejasLabel;
         private System.Windows.Forms.Button importBtn;
         private System.Windows.Forms.OpenFileDialog openExcel;
+        private System.Windows.Forms.TextBox sortDate;
+        private System.Windows.Forms.Button button1;
     }
 }
 

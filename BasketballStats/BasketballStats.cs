@@ -623,7 +623,7 @@ namespace BasketballStats
                 var label = new Label
                 {
                     AutoSize = true,
-                    Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, ((byte)204)),
+                    Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 204),
                     ForeColor = Color.Black,
                     Location = new Point(15, startY),
                     Name = match.Id.ToString(),
@@ -1084,6 +1084,17 @@ namespace BasketballStats
                     }
                 }
             }
+        }
+
+        public void SortByDate(object sender, EventArgs e)
+        {
+            if (DateTime.TryParse(sortDate.Text, out DateTime date))
+            {
+                SaveMatches = _matchService.GetMatchesForSaving(date);
+                InitiliazeHomeStatistic();
+            }
+            else
+                messageLabel.Text = "Nepareiz datums formāts";
         }
     }
 }
