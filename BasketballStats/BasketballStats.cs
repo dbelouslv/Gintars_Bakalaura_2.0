@@ -616,6 +616,8 @@ namespace BasketballStats
             HomePanel.Controls.Clear();
             HomePanel.Controls.Add(label2);
             HomePanel.Controls.Add(pedejasLabel);
+            HomePanel.Controls.Add(sortDate);
+            HomePanel.Controls.Add(button1);
 
             int startY = 120;
             foreach (var match in SaveMatches)
@@ -1088,13 +1090,23 @@ namespace BasketballStats
 
         public void SortByDate(object sender, EventArgs e)
         {
-            if (DateTime.TryParse(sortDate.Text, out DateTime date))
+            messageLabel.Text = string.Empty;
+
+            if (string.IsNullOrEmpty(sortDate.Text))
+            {
+                SaveMatches = _matchService.GetMatchesForSaving();
+                InitiliazeHomeStatistic();
+            }
+            else if (DateTime.TryParse(sortDate.Text, out DateTime date))
             {
                 SaveMatches = _matchService.GetMatchesForSaving(date);
                 InitiliazeHomeStatistic();
             }
             else
+            {
+                messageLabel.ForeColor = Color.Red;
                 messageLabel.Text = "Nepareiz datums formāts";
+            }
         }
     }
 }

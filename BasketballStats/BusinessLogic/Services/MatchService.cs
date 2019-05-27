@@ -43,7 +43,7 @@ namespace BS.BusinessLogic.Services
             var matches = Dbset.Where(w => w.Participants.Count > 0 && w.TeamTwo != null && w.TeamOne != null).ToList();
 
             if (date.HasValue)
-                matches = matches.Where(w => w.Date == date.Value).ToList();
+                matches = matches.Where(w => w.Date.Value.Date == date.Value.Date).ToList();
 
             matches = matches.OrderByDescending(o => o.Date).Take(15).ToList();
 
