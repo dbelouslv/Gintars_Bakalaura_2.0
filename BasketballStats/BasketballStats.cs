@@ -262,7 +262,7 @@ namespace BasketballStats
                 {
                     var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
 
-                    if (currentPlayer != null)
+                    if (currentPlayer != null && currentPlayer.Fouls < 5)
                     {
                         if (point > 0 || point < 0 && (currentPlayer.Points + point >= 0))
                         {
@@ -275,7 +275,7 @@ namespace BasketballStats
                 {
                     var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
 
-                    if (currentPlayer != null)
+                    if (currentPlayer != null && currentPlayer.Fouls < 5)
                     {
                         if (point > 0 || point < 0 && (currentPlayer.Points + point >= 0))
                         {
@@ -299,7 +299,7 @@ namespace BasketballStats
 
                     if (currentPlayer != null)
                     {
-                        if (foul > 0 || foul < 0 && (currentPlayer.Fouls + foul >= 0))
+                        if (currentPlayer.Fouls + foul >= 0)
                         {
                             currentPlayer.Fouls += foul;
                             _participantService.Update(currentPlayer);
@@ -312,7 +312,7 @@ namespace BasketballStats
 
                     if (currentPlayer != null)
                     {
-                        if (foul > 0 || foul < 0 && (currentPlayer.Fouls + foul >= 0))
+                        if (currentPlayer.Fouls + foul >= 0)
                         {
                             currentPlayer.Fouls += foul;
                             _participantService.Update(currentPlayer);
@@ -332,7 +332,7 @@ namespace BasketballStats
                 {
                     var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
 
-                    if (currentPlayer != null)
+                    if (currentPlayer != null && currentPlayer.Fouls < 5)
                     {
                         if (missed > 0 || missed < 0 && (currentPlayer.Missed + missed >= 0))
                         {
@@ -345,7 +345,7 @@ namespace BasketballStats
                 {
                     var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
 
-                    if (currentPlayer != null)
+                    if (currentPlayer != null && currentPlayer.Fouls < 5)
                     {
                         if (missed > 0 || missed < 0 && (currentPlayer.Missed + missed >= 0))
                         {
@@ -367,7 +367,7 @@ namespace BasketballStats
                 {
                     var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
 
-                    if (currentPlayer != null)
+                    if (currentPlayer != null && currentPlayer.Fouls < 5)
                     {
                         if (assist > 0 || assist < 0 && (currentPlayer.Assisted + assist >= 0))
                         {
@@ -380,7 +380,7 @@ namespace BasketballStats
                 {
                     var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
 
-                    if (currentPlayer != null)
+                    if (currentPlayer != null && currentPlayer.Fouls < 5)
                     {
                         if (assist > 0 || assist < 0 && (currentPlayer.Assisted + assist >= 0))
                         {
@@ -402,7 +402,7 @@ namespace BasketballStats
                 {
                     var currentPlayer = TeamOneParticipants.FirstOrDefault(f => f.Id == id);
 
-                    if (currentPlayer != null)
+                    if (currentPlayer != null && currentPlayer.Fouls < 5)
                     {
                         if (reb > 0 || reb < 0 && (currentPlayer.REB + reb >= 0))
                         {
@@ -415,7 +415,7 @@ namespace BasketballStats
                 {
                     var currentPlayer = TeamTwoParticipants.FirstOrDefault(f => f.Id == id);
 
-                    if (currentPlayer != null)
+                    if (currentPlayer != null && currentPlayer.Fouls < 5)
                     {
                         if (reb > 0 || reb < 0 && (currentPlayer.REB + reb >= 0))
                         {
@@ -736,7 +736,7 @@ namespace BasketballStats
             }
             else
             {
-                if (!int.TryParse(numberInput.Text, out number))
+                if (!int.TryParse(numberInput.Text, out number) || number <= 0)
                 {
                     messageLabel.Text = "Nepareizs numura formāts!";
                     return;
@@ -877,7 +877,7 @@ namespace BasketballStats
                                     InitializeManagePanel();
                                 }
                                 else
-                                    messageLabel.Text = "Komandas sostavā nav spēlētāju!";
+                                    messageLabel.Text = "Komandas sastavā nav spēlētāju!";
                             }
                             else
                                 messageLabel.Text = "Nepareizs laika formāts!";
