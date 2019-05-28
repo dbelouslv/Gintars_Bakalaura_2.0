@@ -654,17 +654,25 @@ namespace BasketballStats
 
         public void CreateTeam(object sender, EventArgs e)
         {
-            var success = _teamService.CreateTeam(newTeamInput.Text);
-            newTeamInput.Text = string.Empty;
+            messageLabel.ForeColor = Color.Red;
 
-            messageLabel.Text = !success
-                ? "Kļūda, komanda ar šādu nosaukumu jau eksistē"
-                : "Komanda tika izveidota";
+            if (!string.IsNullOrWhiteSpace(newTeamInput.Text))
+            {
+                var success = _teamService.CreateTeam(newTeamInput.Text);
+                newTeamInput.Text = string.Empty;
 
-            messageLabel.ForeColor = success ? Color.Green : Color.Red;
+                if (success)
+                    messageLabel.ForeColor = Color.Green;
 
-            if (success)
-                ResetCreateGamePanel();
+                messageLabel.Text = !success
+                    ? "Kļūda, komanda ar šādu nosaukumu jau eksistē"
+                    : "Komanda tika izveidota";           
+
+                if (success)
+                    ResetCreateGamePanel();
+            }
+            else
+                messageLabel.Text = "Komandu nosaukums nevar būt tukšs!";
         }
 
         public void Exit(object sender, EventArgs e)
@@ -709,19 +717,19 @@ namespace BasketballStats
             messageLabel.ForeColor = Color.Red;
             int number = 0;
 
-            if (string.IsNullOrEmpty(nameInput.Text))
+            if (string.IsNullOrWhiteSpace(nameInput.Text))
             {
                 messageLabel.Text = "Ievadiet spēlētāja vārdu!";
                 return;
             }
 
-            if (string.IsNullOrEmpty(surnameInput.Text))
+            if (string.IsNullOrWhiteSpace(surnameInput.Text))
             {
                 messageLabel.Text = "Ievadiet spēlētāja uzvārdu!";
                 return;
             }
 
-            if (string.IsNullOrEmpty(numberInput.Text))
+            if (string.IsNullOrWhiteSpace(numberInput.Text))
             {
                 messageLabel.Text = "Ievadiet spēlētāja numuru!";
                 return;
